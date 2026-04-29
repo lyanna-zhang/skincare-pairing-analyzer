@@ -482,10 +482,24 @@ function App() {
         <footer className="footer">
           <div className="footer-inner">
             <span className="footer-copy">© 2026 SkinPair. Effortless Precision.</span>
-            <div className="footer-links">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Support</a>
+            <div className="footer-author" aria-label="Site author">
+              <span className="footer-author-text">Built by Lyanna</span>
+              <span className="footer-author-separator" aria-hidden="true">
+                •
+              </span>
+              <a
+                className="footer-github-link"
+                href="https://github.com/lyanna-zhang"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Visit Lyanna's GitHub profile"
+              >
+                <span className="footer-github-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.22.72-.51v-1.87c-2.94.64-3.56-1.25-3.56-1.25-.48-1.19-1.17-1.51-1.17-1.51-.96-.66.07-.65.07-.65 1.06.08 1.62 1.08 1.62 1.08.95 1.6 2.48 1.14 3.09.87.09-.67.37-1.14.67-1.4-2.35-.26-4.82-1.16-4.82-5.17 0-1.14.41-2.07 1.08-2.8-.11-.26-.47-1.31.1-2.73 0 0 .88-.28 2.88 1.07A10.14 10.14 0 0 1 12 6.84c.91 0 1.83.12 2.69.35 2-1.35 2.88-1.07 2.88-1.07.57 1.42.21 2.47.1 2.73.67.73 1.08 1.66 1.08 2.8 0 4.02-2.48 4.91-4.84 5.16.38.32.72.95.72 1.92v2.84c0 .29.19.62.73.51A10.5 10.5 0 0 0 12 1.5Z" />
+                  </svg>
+                </span>
+              </a>
             </div>
           </div>
         </footer>

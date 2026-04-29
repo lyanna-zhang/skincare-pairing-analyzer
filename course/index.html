@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inside SkinPair: An Interactive Codebase Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-bg: #faf7f2;
+        --color-bg-warm: #f5f0e8;
+        --color-bg-code: #1e1e2e;
+        --color-text: #2c2a28;
+        --color-text-secondary: #6b6560;
+        --color-text-muted: #9e9790;
+        --color-border: #e5dfd6;
+        --color-border-light: #eeebe5;
+        --color-surface: #ffffff;
+        --color-surface-warm: #fdf9f3;
+        --color-accent: #2d8b55;
+        --color-accent-hover: #267549;
+        --color-accent-light: #e8f5ee;
+        --color-accent-muted: #7db094;
+        --color-success: #2d8b55;
+        --color-success-light: #e8f5ee;
+        --color-error: #c93b3b;
+        --color-error-light: #fde8e8;
+        --color-info: #2a7b9b;
+        --color-info-light: #e4f2f7;
+        --color-actor-1: #2d8b55;
+        --color-actor-2: #2a7b9b;
+        --color-actor-3: #d4a843;
+        --color-actor-4: #d94f30;
+        --color-actor-5: #7b6daa;
+        --color-actor-6: #5a6472;
+        --font-display: "Bricolage Grotesque", Georgia, serif;
+        --font-body: "DM Sans", -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.125rem;
+        --text-xl: 1.25rem;
+        --text-2xl: 1.5rem;
+        --text-3xl: 1.875rem;
+        --text-4xl: 2.25rem;
+        --text-5xl: 3rem;
+        --text-6xl: 3.75rem;
+        --leading-tight: 1.15;
+        --leading-snug: 1.3;
+        --leading-normal: 1.6;
+        --leading-loose: 1.8;
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.25rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-10: 2.5rem;
+        --space-12: 3rem;
+        --space-16: 4rem;
+        --space-20: 5rem;
+        --space-24: 6rem;
+        --content-width: 800px;
+        --content-width-wide: 1080px;
+        --nav-height: 58px;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-full: 9999px;
+        --shadow-sm: 0 1px 2px rgba(44, 42, 40, 0.05);
+        --shadow-md: 0 4px 12px rgba(44, 42, 40, 0.08);
+        --shadow-lg: 0 8px 24px rgba(44, 42, 40, 0.1);
+        --shadow-xl: 0 16px 48px rgba(44, 42, 40, 0.12);
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+        --duration-fast: 150ms;
+        --duration-normal: 300ms;
+        --duration-slow: 500ms;
+        --stagger-delay: 120ms;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y proximity;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        line-height: var(--leading-normal);
+        background:
+          radial-gradient(circle at top left, rgba(45, 139, 85, 0.08), transparent 28%),
+          radial-gradient(circle at top right, rgba(212, 168, 67, 0.08), transparent 26%),
+          linear-gradient(180deg, #fbf7f2 0%, #f5efe7 100%);
+        background-attachment: fixed;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        border: 0;
+        background: none;
+        cursor: pointer;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .nav {
+        position: fixed;
+        inset: 0 0 auto;
+        height: var(--nav-height);
+        backdrop-filter: blur(12px);
+        background: rgba(250, 247, 242, 0.88);
+        border-bottom: 1px solid rgba(229, 223, 214, 0.92);
+        z-index: 50;
+      }
+
+      .progress-track {
+        position: absolute;
+        inset: auto 0 0;
+        height: 3px;
+        background: rgba(45, 139, 85, 0.1);
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, var(--color-accent), #75b48c);
+        transition: width var(--duration-fast) linear;
+      }
+
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        height: 100%;
+        padding: 0 var(--space-6);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-3);
+      }
+
+      .nav-kicker {
+        font-size: var(--text-xs);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+      }
+
+      .nav-name {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 700;
+      }
+
+      .nav-dots {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid var(--color-accent-muted);
+        background: transparent;
+        padding: 0;
+        transition:
+          transform var(--duration-fast) var(--ease-out),
+          background var(--duration-fast) var(--ease-out),
+          border-color var(--duration-fast) var(--ease-out);
+      }
+
+      .nav-dot:hover,
+      .nav-dot:focus-visible {
+        transform: scale(1.15);
+        outline: none;
+      }
+
+      .nav-dot.active {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+      }
+
+      .hero-module,
+      .module {
+        min-height: 100dvh;
+        min-height: 100vh;
+        scroll-snap-align: start;
+        padding: calc(var(--nav-height) + var(--space-12)) var(--space-6) var(--space-16);
+      }
+
+      .hero-module {
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-module .module-content,
+      .module-content {
+        max-width: var(--content-width-wide);
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .module {
+        border-top: 1px solid rgba(229, 223, 214, 0.55);
+      }
+
+      .tone-base {
+        background: rgba(250, 247, 242, 0.68);
+      }
+
+      .tone-warm {
+        background: rgba(245, 240, 232, 0.76);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.95fr;
+        gap: var(--space-12);
+        align-items: center;
+      }
+
+      .hero-copy {
+        display: grid;
+        gap: var(--space-6);
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 0.45rem 0.85rem;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
+        font-size: var(--text-xs);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 5vw, 5.4rem);
+        line-height: 0.94;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-title .accent {
+        color: var(--color-accent);
+      }
+
+      .hero-lead {
+        margin: 0;
+        max-width: 58ch;
+        font-size: var(--text-lg);
+        color: var(--color-text-secondary);
+      }
+
+      .hero-notes {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      .mini-card,
+      .insight-card,
+      .feature-card,
+      .vault-card,
+      .pattern-card,
+      .debug-card,
+      .prompt-card {
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .mini-card {
+        padding: var(--space-5);
+      }
+
+      .mini-card strong,
+      .feature-card strong,
+      .vault-card strong,
+      .pattern-card strong,
+      .debug-card strong {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        line-height: var(--leading-snug);
+      }
+
+      .mini-card p,
+      .feature-card p,
+      .vault-card p,
+      .pattern-card p,
+      .debug-card p,
+      .prompt-card p,
+      .insight-card p {
+        margin: 0;
+        color: var(--color-text-secondary);
+      }
+
+      .hero-visual {
+        position: relative;
+        padding: var(--space-8);
+        border-radius: 28px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 232, 0.9)),
+          radial-gradient(circle at top right, rgba(45, 139, 85, 0.14), transparent 34%);
+        border: 1px solid rgba(229, 223, 214, 0.9);
+        box-shadow: var(--shadow-xl);
+        overflow: hidden;
+      }
+
+      .hero-visual::after {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border: 1px dashed rgba(45, 139, 85, 0.16);
+        border-radius: 22px;
+        pointer-events: none;
+      }
+
+      .hero-lanes {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .lane {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: var(--space-4);
+        align-items: center;
+      }
+
+      .lane-label {
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+      }
+
+      .lane-track {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+      }
+
+      .bubble {
+        flex: 1;
+        padding: var(--space-4);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-border);
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .bubble strong {
+        display: block;
+        margin-bottom: var(--space-1);
+        font-family: var(--font-display);
+      }
+
+      .bubble span {
+        display: block;
+        font-size: var(--text-sm);
+        color: var(--color-text-secondary);
+      }
+
+      .arrow {
+        color: var(--color-accent);
+        font-size: var(--text-xl);
+      }
+
+      .module-header {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: var(--space-8);
+        align-items: start;
+        margin-bottom: var(--space-10);
+      }
+
+      .module-number {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 10vw, 5rem);
+        line-height: 1;
+        color: rgba(45, 139, 85, 0.18);
+      }
+
+      .module-heading {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .module-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: var(--leading-tight);
+      }
+
+      .module-heading p {
+        margin: 0;
+        max-width: 62ch;
+        color: var(--color-text-secondary);
+        font-size: var(--text-lg);
+      }
+
+      .practical-note {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 0.65rem 1rem;
+        border-radius: var(--radius-full);
+        background: var(--color-accent-light);
+        color: var(--color-accent-hover);
+        font-size: var(--text-sm);
+        font-weight: 600;
+      }
+
+      .screen-grid {
+        display: grid;
+        gap: var(--space-8);
+      }
+
+      .screen {
+        display: grid;
+        gap: var(--space-6);
+        padding: var(--space-8);
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid rgba(229, 223, 214, 0.8);
+        border-radius: 28px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .screen h3 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        line-height: var(--leading-snug);
+      }
+
+      .screen p {
+        margin: 0;
+        color: var(--color-text-secondary);
+      }
+
+      .feature-grid,
+      .vault-grid,
+      .pattern-grid,
+      .prompt-grid,
+      .flow-panels,
+      .actor-layout,
+      .symptom-grid {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .feature-card,
+      .vault-card,
+      .pattern-card,
+      .debug-card,
+      .prompt-card {
+        padding: var(--space-5);
+      }
+
+      .feature-card small,
+      .vault-card small,
+      .pattern-card small,
+      .debug-card small,
+      .prompt-card small {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+      }
+
+      .step-buttons,
+      .actor-buttons,
+      .scenario-buttons,
+      .rule-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+      }
+
+      .step-button,
+      .actor-button,
+      .scenario-button,
+      .rule-button {
+        padding: 0.8rem 1rem;
+        border-radius: var(--radius-full);
+        border: 1px solid var(--color-border);
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform var(--duration-fast) var(--ease-out),
+          background var(--duration-fast) var(--ease-out),
+          border-color var(--duration-fast) var(--ease-out);
+      }
+
+      .step-button:hover,
+      .actor-button:hover,
+      .scenario-button:hover,
+      .rule-button:hover,
+      .step-button:focus-visible,
+      .actor-button:focus-visible,
+      .scenario-button:focus-visible,
+      .rule-button:focus-visible {
+        outline: none;
+        transform: translateY(-1px);
+        border-color: var(--color-accent-muted);
+      }
+
+      .step-button.active,
+      .actor-button.active,
+      .scenario-button.active,
+      .rule-button.active {
+        background: var(--color-accent-light);
+        border-color: var(--color-accent);
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: grid;
+      }
+
+      .flow-panels .tab-panel,
+      .actor-detail,
+      .scenario-panel,
+      .rule-panel {
+        gap: var(--space-4);
+        padding: var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .actor-layout {
+        grid-template-columns: 260px 1fr;
+        align-items: start;
+      }
+
+      .actor-buttons {
+        flex-direction: column;
+      }
+
+      .actor-button {
+        text-align: left;
+      }
+
+      .actor-detail h4,
+      .scenario-panel h4,
+      .rule-panel h4 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+      }
+
+      .file-tree {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .file-row {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: var(--space-4);
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border-light);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .file-row code {
+        font-family: var(--font-mono);
+        font-size: var(--text-sm);
+        color: var(--color-accent-hover);
+      }
+
+      .architecture {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--space-4);
+        align-items: start;
+      }
+
+      .architecture-column {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .architecture-column h4 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+      }
+
+      .architecture-card {
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        background: rgba(255, 255, 255, 0.9);
+        min-height: 130px;
+      }
+
+      .architecture-card strong {
+        display: block;
+        margin-bottom: var(--space-2);
+      }
+
+      .architecture-arrow {
+        align-self: center;
+        justify-self: center;
+        font-size: 1.6rem;
+        color: var(--color-accent);
+      }
+
+      .insight-card {
+        padding: var(--space-5);
+        border-left: 4px solid var(--color-accent);
+      }
+
+      .insight-card strong {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-family: var(--font-display);
+      }
+
+      .translation-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .translation-code {
+        position: relative;
+        padding: var(--space-6);
+        background: var(--color-bg-code);
+        color: #cdd6f4;
+        overflow-x: hidden;
+      }
+
+      .translation-code pre,
+      .translation-code code {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-x: hidden;
+        font-family: var(--font-mono);
+        font-size: var(--text-sm);
+        line-height: 1.7;
+      }
+
+      .translation-english {
+        position: relative;
+        padding: var(--space-6);
+        background: var(--color-surface-warm);
+        border-left: 3px solid var(--color-accent);
+      }
+
+      .translation-label {
+        position: absolute;
+        top: var(--space-3);
+        right: var(--space-3);
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.55;
+      }
+
+      .translation-english .translation-label {
+        color: var(--color-text-muted);
+      }
+
+      .translation-lines {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .translation-lines p {
+        margin: 0;
+        font-size: var(--text-sm);
+      }
+
+      .glossary {
+        border-bottom: 1.5px dashed rgba(45, 139, 85, 0.45);
+        cursor: pointer;
+      }
+
+      .tooltip-bubble {
+        position: fixed;
+        z-index: 80;
+        max-width: 300px;
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        background: rgba(44, 42, 40, 0.96);
+        color: #faf7f2;
+        box-shadow: var(--shadow-lg);
+        font-size: var(--text-sm);
+        line-height: 1.55;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition:
+          opacity var(--duration-fast) var(--ease-out),
+          transform var(--duration-fast) var(--ease-out);
+      }
+
+      .tooltip-bubble.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .quiz-container {
+        display: grid;
+        gap: var(--space-5);
+      }
+
+      .quiz-question-block {
+        display: grid;
+        gap: var(--space-3);
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--color-border);
+      }
+
+      .quiz-question-block h4 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+      }
+
+      .quiz-options {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .quiz-option {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        border: 2px solid var(--color-border);
+        border-radius: var(--radius-md);
+        background: var(--color-surface);
+        transition:
+          border-color var(--duration-fast),
+          background var(--duration-fast),
+          transform var(--duration-fast);
+      }
+
+      .quiz-option:hover,
+      .quiz-option:focus-visible {
+        outline: none;
+        border-color: var(--color-accent-muted);
+        transform: translateY(-1px);
+      }
+
+      .quiz-option.selected {
+        border-color: var(--color-accent);
+        background: var(--color-accent-light);
+      }
+
+      .quiz-option.correct {
+        border-color: var(--color-success);
+        background: var(--color-success-light);
+      }
+
+      .quiz-option.incorrect {
+        border-color: var(--color-error);
+        background: var(--color-error-light);
+      }
+
+      .quiz-option-radio {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid var(--color-border);
+        flex: none;
+      }
+
+      .quiz-option.selected .quiz-option-radio {
+        border-color: var(--color-accent);
+        background: var(--color-accent);
+        box-shadow: inset 0 0 0 3px #fff;
+      }
+
+      .quiz-option.correct .quiz-option-radio {
+        border-color: var(--color-success);
+        background: var(--color-success);
+        box-shadow: inset 0 0 0 3px #fff;
+      }
+
+      .quiz-option.incorrect .quiz-option-radio {
+        border-color: var(--color-error);
+        background: var(--color-error);
+        box-shadow: inset 0 0 0 3px #fff;
+      }
+
+      .quiz-feedback {
+        display: none;
+        padding: var(--space-3);
+        border-radius: var(--radius-sm);
+        font-size: var(--text-sm);
+      }
+
+      .quiz-feedback.show {
+        display: block;
+      }
+
+      .quiz-feedback.success {
+        background: var(--color-success-light);
+        color: var(--color-success);
+      }
+
+      .quiz-feedback.error {
+        background: var(--color-error-light);
+        color: var(--color-error);
+      }
+
+      .quiz-feedback.warning {
+        background: var(--color-info-light);
+        color: var(--color-info);
+      }
+
+      .quiz-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+      }
+
+      .quiz-check-btn,
+      .quiz-reset-btn {
+        padding: 0.8rem 1.1rem;
+        border-radius: var(--radius-full);
+        border: 1px solid var(--color-border);
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .quiz-check-btn {
+        background: var(--color-accent);
+        color: white;
+        border-color: var(--color-accent);
+      }
+
+      .quiz-overall-feedback {
+        font-size: var(--text-sm);
+        color: var(--color-text-secondary);
+      }
+
+      .vault-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .pattern-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .rule-panel .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 0.45rem 0.7rem;
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .status-pill--avoid,
+      .status-pill--caution {
+        background: var(--color-error-light);
+        color: var(--color-error);
+      }
+
+      .status-pill--duplicate {
+        background: #fff3d7;
+        color: #8f6700;
+      }
+
+      .status-pill--recommended,
+      .status-pill--supportive {
+        background: var(--color-success-light);
+        color: var(--color-success);
+      }
+
+      .symptom-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .debug-card {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .debug-card ul,
+      .scenario-panel ol,
+      .rule-panel ul,
+      .actor-detail ul {
+        margin: 0;
+        padding-left: 1.2rem;
+        color: var(--color-text-secondary);
+      }
+
+      .prompt-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .course-footer {
+        padding: var(--space-16) var(--space-6) var(--space-20);
+        background: rgba(44, 42, 40, 0.97);
+        color: #faf7f2;
+      }
+
+      .course-footer-inner {
+        max-width: var(--content-width-wide);
+        margin: 0 auto;
+        display: grid;
+        gap: var(--space-5);
+      }
+
+      .course-footer h3 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+      }
+
+      .course-footer p {
+        margin: 0;
+        max-width: 65ch;
+        color: rgba(250, 247, 242, 0.8);
+      }
+
+      .animate-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity var(--duration-slow) var(--ease-out),
+          transform var(--duration-slow) var(--ease-out);
+      }
+
+      .animate-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stagger-children > .animate-in {
+        transition-delay: calc(var(--stagger-index, 0) * var(--stagger-delay));
+      }
+
+      @media (max-width: 1040px) {
+        .hero-grid,
+        .actor-layout,
+        .architecture {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-notes,
+        .feature-grid,
+        .vault-grid,
+        .pattern-grid,
+        .prompt-grid,
+        .symptom-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .architecture-arrow {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-inner {
+          padding-inline: var(--space-4);
+        }
+
+        .nav-title {
+          flex-direction: column;
+          gap: 0;
+          align-items: flex-start;
+        }
+
+        .nav-name {
+          font-size: var(--text-base);
+        }
+
+        .hero-module,
+        .module {
+          padding-inline: var(--space-4);
+        }
+
+        .module-header {
+          grid-template-columns: 1fr;
+          gap: var(--space-4);
+        }
+
+        .translation-block,
+        .hero-notes,
+        .feature-grid,
+        .vault-grid,
+        .pattern-grid,
+        .prompt-grid,
+        .symptom-grid,
+        .file-row {
+          grid-template-columns: 1fr;
+        }
+
+        .translation-english {
+          border-left: none;
+          border-top: 3px solid var(--color-accent);
+        }
+
+        .file-row {
+          gap: var(--space-2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav" aria-label="Course navigation">
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0"></div>
+      </div>
+      <div class="nav-inner">
+        <div class="nav-title">
+          <span class="nav-kicker">Codebase Course</span>
+          <span class="nav-name">Inside SkinPair</span>
+        </div>
+        <div class="nav-dots" role="tablist" aria-label="Modules">
+          <button class="nav-dot" data-target="module-1" aria-label="Module 1: User Journey"></button>
+          <button class="nav-dot" data-target="module-2" aria-label="Module 2: Actors"></button>
+          <button class="nav-dot" data-target="module-3" aria-label="Module 3: Data Flow"></button>
+          <button class="nav-dot" data-target="module-4" aria-label="Module 4: Local Storage"></button>
+          <button class="nav-dot" data-target="module-5" aria-label="Module 5: Rules"></button>
+          <button class="nav-dot" data-target="module-6" aria-label="Module 6: Debugging"></button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="tooltip-bubble" id="tooltipBubble" aria-hidden="true"></div>
+
+    <section class="hero-module tone-base" id="top">
+      <div class="module-content">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="badge-row animate-in">
+              <span class="badge">React</span>
+              <span class="badge">Vite</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">No Backend</span>
+              <span class="badge">Local-First MVP</span>
+            </div>
+            <h1 class="hero-title animate-in">
+              How <span class="accent">SkinPair</span> thinks before it tells you two products do not belong together.
+            </h1>
+            <p class="hero-lead animate-in">
+              This project is a browser-only skincare pairing analyzer. You paste ingredient lists, it detects key treatment tags, and it compares every saved product against a handwritten compatibility rulebook.
+            </p>
+            <p class="hero-lead animate-in">
+              The goal of this course is not to turn you into an engineer. It is to give you enough technical fluency to steer an AI assistant, catch bad architecture suggestions, and debug this app without feeling lost.
+            </p>
+            <div class="hero-notes stagger-children">
+              <div class="mini-card animate-in">
+                <strong>What it does</strong>
+                <p>Builds a tiny skincare shelf, detects ingredients, then warns about risky layering.</p>
+              </div>
+              <div class="mini-card animate-in">
+                <strong>Why it is interesting</strong>
+                <p>It feels like an app with “backend behavior,” but the whole thing lives in your browser.</p>
+              </div>
+              <div class="mini-card animate-in">
+                <strong>What you will learn</strong>
+                <p>State, persistence, rule engines, UI orchestration, and how to debug a local-first product.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual animate-in" aria-hidden="true">
+            <div class="hero-lanes">
+              <div class="lane">
+                <div class="lane-label">You</div>
+                <div class="lane-track">
+                  <div class="bubble">
+                    <strong>Paste ingredients</strong>
+                    <span>Name + full ingredient list</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </div>
+              </div>
+              <div class="lane">
+                <div class="lane-label">App</div>
+                <div class="lane-track">
+                  <div class="bubble">
+                    <strong>Tag the product</strong>
+                    <span>Find AHA, retinoid, ceramides, and more</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </div>
+              </div>
+              <div class="lane">
+                <div class="lane-label">Rules</div>
+                <div class="lane-track">
+                  <div class="bubble">
+                    <strong>Compare every pair</strong>
+                    <span>Conflict, caution, duplicate, or supportive</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </div>
+              </div>
+              <div class="lane">
+                <div class="lane-label">Result</div>
+                <div class="lane-track">
+                  <div class="bubble">
+                    <strong>Show cards</strong>
+                    <span>“Do not layer” on one side, “works well” on the other</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="module tone-warm" id="module-1" data-module-name="User Journey">
+      <div class="module-content">
+        <div class="module-header animate-in">
+          <div class="module-number">01</div>
+          <div class="module-heading">
+            <div class="practical-note">Why you should care: this teaches you where one click turns into multiple code actions.</div>
+            <h2>The moment you add a product, three jobs start at once.</h2>
+            <p>
+              Imagine a parcel entering a sorting depot. The product name, ingredient list, and shelf refresh are all separate jobs, but the user experiences them as one smooth moment. That is the core trick of this app.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen animate-in">
+            <h3>What a user actually experiences</h3>
+            <div class="feature-grid stagger-children">
+              <div class="feature-card animate-in">
+                <small>Step 1</small>
+                <strong>Capture</strong>
+                <p>You type a product name and paste ingredients into a simple form.</p>
+              </div>
+              <div class="feature-card animate-in">
+                <small>Step 2</small>
+                <strong>Interpret</strong>
+                <p>The app guesses product type and extracts meaningful tags from the ingredients.</p>
+              </div>
+              <div class="feature-card animate-in">
+                <small>Step 3</small>
+                <strong>Judge</strong>
+                <p>The analyzer checks every saved product against every other saved product.</p>
+              </div>
+            </div>
+            <div class="insight-card">
+              <strong>Aha!</strong>
+              <p>A lot of “AI-powered” products are really orchestration products. The hard part is not just a single clever function. It is coordinating multiple small steps so the app feels instant and trustworthy.</p>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Trace the journey like a courier route</h3>
+            <p>
+              Click the route stops. Each stop shows one responsibility, which is exactly the vocabulary you want when telling an AI agent where to make changes.
+            </p>
+            <div class="step-buttons" data-tab-root>
+              <button class="step-button active" data-tab-group="m1-flow" data-tab-target="m1-stop-1">1. Build payload</button>
+              <button class="step-button" data-tab-group="m1-flow" data-tab-target="m1-stop-2">2. Save product</button>
+              <button class="step-button" data-tab-group="m1-flow" data-tab-target="m1-stop-3">3. Recompute pairings</button>
+              <button class="step-button" data-tab-group="m1-flow" data-tab-target="m1-stop-4">4. Update interface</button>
+            </div>
+            <div class="flow-panels">
+              <div class="tab-panel active" data-tab-panel="m1-stop-1">
+                <div class="scenario-panel">
+                  <h4>Stop 1: turn raw text into a payload</h4>
+                  <p>The app trims whitespace and packages the two fields into a <span class="glossary" data-definition="A payload is the structured bundle of data one part of a program sends to another. When prompting AI, saying ‘build the payload before saving’ is very precise.">payload</span>. This is the handoff format the rest of the app understands.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="m1-stop-2">
+                <div class="scenario-panel">
+                  <h4>Stop 2: save into the shelf</h4>
+                  <p>The save call does not go to a server. It stores the new product in browser <span class="glossary" data-definition="localStorage is a tiny key-value storage area built into the browser. It survives refreshes in the same browser profile, but it is not shared across devices.">localStorage</span>, adds an ID, and attaches detected tags.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="m1-stop-3">
+                <div class="scenario-panel">
+                  <h4>Stop 3: recompute the whole shelf</h4>
+                  <p>After saving one product, the app immediately reruns the pairing analysis for every product. That means the analyzer behaves like a fresh judge, not like a patchwork of partial updates.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="m1-stop-4">
+                <div class="scenario-panel">
+                  <h4>Stop 4: redraw the screen</h4>
+                  <p>Only after the data is ready does the UI replace the shelf list, clear the form, and show the new pairing cards. That sequencing is why the app feels deliberate instead of glitchy.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Code ↔ English: the add-product moment</h3>
+            <div class="translation-block">
+              <div class="translation-code">
+                <span class="translation-label">Code</span>
+                <pre><code>const payload: ProductInput = {
+  name: name.trim(),
+  ingredients_text: ingredientsText.trim(),
+};
+
+setIsSubmitting(true);
+setErrorMessage(null);
+
+try {
+  const createdProduct = await createProduct(payload);
+  const nextPairings = await fetchPairings();
+  const nextProducts = [...products, createdProduct];
+  persistSnapshot(nextProducts, nextPairings, tags);</code></pre>
+              </div>
+              <div class="translation-english">
+                <span class="translation-label">Plain English</span>
+                <div class="translation-lines">
+                  <p>Take the raw form fields and clean them up so the rest of the app gets tidy input.</p>
+                  <p>Flip the UI into a “working” state and clear any old error message.</p>
+                  <p>Ask the save layer to create the new product entry.</p>
+                  <p>Immediately rerun the full shelf analysis so the pairing cards stay honest.</p>
+                  <p>Build the next shelf list by combining old products with the newly created one.</p>
+                  <p>Write a snapshot so refreshes can reopen the exact same shelf state.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Scenario quiz: can you steer this flow?</h3>
+            <div class="quiz-container" id="quiz-module-1">
+              <div class="quiz-question-block" data-correct="a" data-success="Exactly. The payload is the first boundary. If the name or ingredient text is wrong there, every later step will be wrong too." data-error="Close, but the first stop is earlier. Before tags or cards happen, the app builds a clean payload from the form values.">
+                <h4>You want to add a third form field called “notes.” Where should your first change happen?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>In the payload built from the form fields</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Inside the pairing results cards</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Only in localStorage</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="c" data-success="Yes. The analyzer recomputes right after saving, so the freshest source of truth is the analysis path, not the UI card layout." data-error="Not quite. The shelf cards display the result, but the cause of a missing conflict is usually earlier in the analysis path.">
+                <h4>A newly added serum never appears in “Do Not Layer Together.” Where would you inspect first?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>The footer links</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>The hero title copy</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>The save-and-analyze path after form submission</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="b" data-success="Exactly. Recomputing all pairings keeps the mental model simple: one current shelf, one fresh verdict." data-error="Almost. Incremental updates sound efficient, but they create more tricky edge cases. This app chooses simplicity by recalculating the whole shelf.">
+                <h4>Why does the app rerun pairing analysis after adding one product instead of patching one card?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>Because React cannot update a single card</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Because one new product changes many pair relationships at once</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Because localStorage requires a full page refresh</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-actions">
+                <button class="quiz-check-btn" data-quiz-target="quiz-module-1">Check answers</button>
+                <button class="quiz-reset-btn" data-quiz-target="quiz-module-1">Try again</button>
+              </div>
+              <div class="quiz-overall-feedback"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="module tone-base" id="module-2" data-module-name="Actors">
+      <div class="module-content">
+        <div class="module-header animate-in">
+          <div class="module-number">02</div>
+          <div class="module-heading">
+            <div class="practical-note">Why you should care: once you know the cast, you can tell AI exactly which file should own a change.</div>
+            <h2>Meet the cast of characters.</h2>
+            <p>
+              Think of this codebase like a theater troupe. One actor faces the audience, one carries props, one reads the script, and one keeps the notebook of past performances.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen animate-in">
+            <h3>Tap a character to see its job</h3>
+            <div class="actor-layout" data-tab-root>
+              <div class="actor-buttons">
+                <button class="actor-button active" data-tab-group="actors" data-tab-target="actor-app">App.tsx</button>
+                <button class="actor-button" data-tab-group="actors" data-tab-target="actor-service">shelfService.ts</button>
+                <button class="actor-button" data-tab-group="actors" data-tab-target="actor-analysis">localAnalysis.ts</button>
+                <button class="actor-button" data-tab-group="actors" data-tab-target="actor-store">localProductStore.ts</button>
+                <button class="actor-button" data-tab-group="actors" data-tab-target="actor-cache">localCache.ts</button>
+                <button class="actor-button" data-tab-group="actors" data-tab-target="actor-dataset">pairingDataset.ts</button>
+              </div>
+              <div class="flow-panels">
+                <div class="tab-panel active" data-tab-panel="actor-app">
+                  <div class="actor-detail">
+                    <h4>App.tsx: the stage manager</h4>
+                    <p>It owns the screen, the form, the loading states, and the timing of refreshes. When you ask AI to “change the user flow,” this file is often the right stage.</p>
+                    <ul>
+                      <li>Tracks form input and UI state</li>
+                      <li>Decides when to save, refresh, and show errors</li>
+                      <li>Renders shelf cards and pairing cards</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="actor-service">
+                  <div class="actor-detail">
+                    <h4>shelfService.ts: the polite receptionist</h4>
+                    <p>This file looks like an <span class="glossary" data-definition="An API is the agreed set of functions or endpoints one part of a system exposes to another. In small apps, this can just mean a clean function boundary between files.">API</span>, even though everything stays local. It gives the UI simple verbs like fetch, create, and delete.</p>
+                    <ul>
+                      <li>Hides storage details from the UI</li>
+                      <li>Makes future backend upgrades easier</li>
+                      <li>Keeps the interface layer simpler to read</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="actor-analysis">
+                  <div class="actor-detail">
+                    <h4>localAnalysis.ts: the chemist</h4>
+                    <p>This is where raw ingredient text becomes detected tags, sorted products, and final pairing verdicts. If the analyzer feels “wrong,” this file is your prime suspect.</p>
+                    <ul>
+                      <li>Normalizes strings</li>
+                      <li>Detects tags and product type</li>
+                      <li>Compares all product pairs against rules</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="actor-store">
+                  <div class="actor-detail">
+                    <h4>localProductStore.ts: the shelf drawer</h4>
+                    <p>This file is the long-term drawer that stores products between refreshes. It assigns IDs and manages add/remove behavior.</p>
+                    <ul>
+                      <li>Reads and writes browser localStorage</li>
+                      <li>Owns the product list and next ID counter</li>
+                      <li>Recovers from corrupt data by rebuilding when needed</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="actor-cache">
+                  <div class="actor-detail">
+                    <h4>localCache.ts: the quick snapshot notebook</h4>
+                    <p>This is the app’s “open to where we left off” notebook. It stores products, pairings, tags, and a save timestamp.</p>
+                    <ul>
+                      <li>Supports faster first paint after refresh</li>
+                      <li>Validates snapshot shape before trusting it</li>
+                      <li>Stores a savedAt timestamp for sync messaging</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tab-panel" data-tab-panel="actor-dataset">
+                  <div class="actor-detail">
+                    <h4>pairingDataset.ts: the rulebook</h4>
+                    <p>This giant file is not logic. It is knowledge. It lists ingredient keywords, compatibility rules, conflict rules, and product-type hints.</p>
+                    <ul>
+                      <li>Maps ingredient words to tags</li>
+                      <li>Defines which tag pairs are safe or risky</li>
+                      <li>Includes multilingual ingredient variants</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>The file tree in plain English</h3>
+            <div class="file-tree">
+              <div class="file-row">
+                <code>src/App.tsx</code>
+                <p>The one big React <span class="glossary" data-definition="A component is a reusable UI unit. In React, components are functions that return interface markup and respond to changing state.">component</span> that users actually see.</p>
+              </div>
+              <div class="file-row">
+                <code>src/lib/shelfService.ts</code>
+                <p>A clean function layer so the UI does not need to know where data really lives.</p>
+              </div>
+              <div class="file-row">
+                <code>src/lib/localAnalysis.ts</code>
+                <p>The analysis engine that turns words into tags, tags into reasons, and reasons into cards.</p>
+              </div>
+              <div class="file-row">
+                <code>src/lib/localProductStore.ts</code>
+                <p>The durable shelf database, except the “database” is just browser storage.</p>
+              </div>
+              <div class="file-row">
+                <code>src/lib/localCache.ts</code>
+                <p>The fast-open snapshot that makes refreshes feel friendlier.</p>
+              </div>
+              <div class="file-row">
+                <code>src/lib/pairingDataset.ts</code>
+                <p>The catalog of tags, keyword detectors, and pairing judgments.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Code ↔ English: the tiny service layer</h3>
+            <div class="translation-block">
+              <div class="translation-code">
+                <span class="translation-label">Code</span>
+                <pre><code>export const fetchProducts = async (): Promise&lt;Product[]&gt; => listStoredProducts();
+
+export const fetchTags = async (): Promise&lt;TagMetadata[]&gt; => getTagCatalog();
+
+export const createProduct = async (payload: ProductInput): Promise&lt;Product&gt; => addStoredProduct(payload);
+
+export const deleteProduct = async (productId: number): Promise&lt;void&gt; => {
+  removeStoredProduct(productId);
+};
+
+export const fetchPairings = async (): Promise&lt;PairingAnalysis&gt; =>
+  analyzePairings(listStoredProducts());</code></pre>
+              </div>
+              <div class="translation-english">
+                <span class="translation-label">Plain English</span>
+                <div class="translation-lines">
+                  <p>Give the UI a simple “fetch products” verb instead of making it talk to storage directly.</p>
+                  <p>Expose the tag catalog through the same friendly service pattern.</p>
+                  <p>Create one save verb that accepts product input and returns the finished product object.</p>
+                  <p>Wrap deletion so the UI can request removal without knowing storage internals.</p>
+                  <p>When the UI asks for pairings, read the current shelf and run analysis right away.</p>
+                </div>
+              </div>
+            </div>
+            <div class="insight-card">
+              <strong>Aha!</strong>
+              <p>Abstraction is not about making code fancy. It is about creating a seam where future change can happen without touching every caller.</p>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Scenario quiz: choose the right actor</h3>
+            <div class="quiz-container" id="quiz-module-2">
+              <div class="quiz-question-block" data-correct="b" data-success="Exactly. New compatibility knowledge belongs in the dataset, because that file is the rulebook rather than the analysis machinery itself." data-error="Not quite. The analyzer reads rules, but the new relationship itself belongs in the rule data file.">
+                <h4>You want to teach the app that “peptides + niacinamide” is supportive. Which file gets the first edit?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>App.tsx</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>pairingDataset.ts</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>styles.css</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="a" data-success="Yes. The service layer exists specifically so the UI can call clear verbs without knowing storage details." data-error="Close. The actual storage file matters later, but the UI should first go through the service boundary.">
+                <h4>You want the interface to duplicate a product. Which layer should the UI talk to first?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>shelfService.ts</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>pairingDataset.ts</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>README.md</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="c" data-success="Exactly. If a refresh restores old pairings, the snapshot notebook is part of the story." data-error="Almost. The visible bug appears in the UI, but the stale restore behavior points at the snapshot cache layer.">
+                <h4>After refresh, the shelf comes back but the pairing cards look old. Which actor would you inspect first?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>catalog.ts</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>vite.config.ts</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>localCache.ts</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-actions">
+                <button class="quiz-check-btn" data-quiz-target="quiz-module-2">Check answers</button>
+                <button class="quiz-reset-btn" data-quiz-target="quiz-module-2">Try again</button>
+              </div>
+              <div class="quiz-overall-feedback"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="module tone-warm" id="module-3" data-module-name="Data Flow">
+      <div class="module-content">
+        <div class="module-header animate-in">
+          <div class="module-number">03</div>
+          <div class="module-heading">
+            <div class="practical-note">Why you should care: “it is not showing up” bugs are almost always data-flow bugs.</div>
+            <h2>How the pieces talk to each other.</h2>
+            <p>
+              The best metaphor here is a relay race. Each runner does one short leg, and the baton is data. If you lose the baton anywhere, the final screen looks broken even if most of the code is fine.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen animate-in">
+            <h3>The four-lane relay</h3>
+            <div class="architecture">
+              <div class="architecture-column">
+                <h4>User interface</h4>
+                <div class="architecture-card">
+                  <strong>App.tsx</strong>
+                  <p>Collects input, toggles loading banners, and redraws cards.</p>
+                </div>
+              </div>
+              <div class="architecture-arrow">→</div>
+              <div class="architecture-column">
+                <h4>Service verbs</h4>
+                <div class="architecture-card">
+                  <strong>shelfService.ts</strong>
+                  <p>Offers fetch, create, delete, and analyze actions in one vocabulary.</p>
+                </div>
+              </div>
+              <div class="architecture-arrow">→</div>
+              <div class="architecture-column">
+                <h4>Storage and logic</h4>
+                <div class="architecture-card">
+                  <strong>localProductStore.ts</strong>
+                  <p>Stores products and IDs.</p>
+                </div>
+                <div class="architecture-card">
+                  <strong>localAnalysis.ts</strong>
+                  <p>Produces tags, conflicts, and compatibilities.</p>
+                </div>
+              </div>
+              <div class="architecture-arrow">→</div>
+              <div class="architecture-column">
+                <h4>Display results</h4>
+                <div class="architecture-card">
+                  <strong>Pairing cards</strong>
+                  <p>Show human-friendly warnings and supportive matches.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Switch scenarios to watch different message paths</h3>
+            <div class="scenario-buttons" data-tab-root>
+              <button class="scenario-button active" data-tab-group="scenario" data-tab-target="scenario-add">Add product</button>
+              <button class="scenario-button" data-tab-group="scenario" data-tab-target="scenario-delete">Delete product</button>
+              <button class="scenario-button" data-tab-group="scenario" data-tab-target="scenario-refresh">Refresh analysis</button>
+            </div>
+            <div class="flow-panels">
+              <div class="tab-panel active" data-tab-panel="scenario-add">
+                <div class="scenario-panel">
+                  <h4>Add product path</h4>
+                  <ol>
+                    <li>Form fields become a payload.</li>
+                    <li>The service calls the local product store.</li>
+                    <li>The analysis engine reruns on the current shelf.</li>
+                    <li>The snapshot cache is saved.</li>
+                    <li>React state updates and the cards redraw.</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="scenario-delete">
+                <div class="scenario-panel">
+                  <h4>Delete product path</h4>
+                  <ol>
+                    <li>The UI marks one product as “currently deleting.”</li>
+                    <li>The service removes it from localStorage.</li>
+                    <li>The analyzer recalculates all remaining pairs.</li>
+                    <li>The snapshot is overwritten so refreshes match the new shelf.</li>
+                    <li>The deleting spinner disappears.</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="scenario-refresh">
+                <div class="scenario-panel">
+                  <h4>Refresh analysis path</h4>
+                  <ol>
+                    <li>The UI flips into refresh mode.</li>
+                    <li>Products, pairings, and tags are fetched together.</li>
+                    <li>The app saves a fresh snapshot and timestamp.</li>
+                    <li>React updates products, tags, tag lookup, and cards in one transition.</li>
+                    <li>The loading banner disappears.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Code ↔ English: refresh three things together</h3>
+            <div class="translation-block">
+              <div class="translation-code">
+                <span class="translation-label">Code</span>
+                <pre><code>try {
+  const [nextProducts, nextPairings, nextTags] = await Promise.all([
+    fetchProducts(),
+    fetchPairings(),
+    fetchTags(),
+  ]);
+  const nextSavedAt =
+    saveLocalShelfSnapshot({
+      products: nextProducts,
+      pairings: nextPairings,
+      tags: nextTags,
+    }) ?? localSnapshotSavedAt;
+
+  startTransition(() => {
+    setProducts(nextProducts);
+    setPairings(nextPairings);
+    setTags(nextTags);
+    setTagLookup(buildTagLookup(nextTags));
+    setLocalSnapshotSavedAt(nextSavedAt);
+  });</code></pre>
+              </div>
+              <div class="translation-english">
+                <span class="translation-label">Plain English</span>
+                <div class="translation-lines">
+                  <p>Ask for products, pairings, and tags at the same time instead of one after another.</p>
+                  <p>Save the newly gathered snapshot so refreshes can reopen the same scene.</p>
+                  <p>If the save fails, keep the previous timestamp instead of crashing the flow.</p>
+                  <p>Use a React transition so the UI can update a bundle of state changes together.</p>
+                  <p>Rebuild the tag lookup map so labels stay fast and human-readable.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Scenario quiz: diagnose the missing baton</h3>
+            <div class="quiz-container" id="quiz-module-3">
+              <div class="quiz-question-block" data-correct="b" data-success="Exactly. If multiple views depend on related data, fetching them together reduces awkward half-updated states." data-error="Not quite. The pattern here is bundling related reads so the UI can move forward with a consistent set.">
+                <h4>Why does the refresh path fetch products, pairings, and tags together?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>Because JavaScript cannot call one function at a time</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Because the UI needs a consistent bundle of related data</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Because React requires exactly three fetches</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="c" data-success="Yes. A stale tag lookup would make the UI show raw codes or mismatched labels even if the underlying tags changed." data-error="Close. The symptom is about how tag labels are displayed, so the lookup rebuild step is the key suspect.">
+                <h4>The cards suddenly show raw tag codes like “vitamin_c” instead of nice labels. Which update step matters most?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>The footer render</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>The product deletion spinner</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Rebuilding the tag lookup after loading tags</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="a" data-success="Exactly. startTransition is a UI smoothing tool, not business logic. It helps state changes land together more gracefully." data-error="Not quite. The core reason is to group visual updates more gently, not to change storage or rule behavior.">
+                <h4>What is the main reason this app uses <span class="glossary" data-definition="startTransition is a React function that marks state updates as less urgent, which can help keep the interface responsive during larger UI updates.">startTransition</span> during refresh?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>To make a bundle of UI updates feel smoother</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>To encrypt localStorage</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>To sort products alphabetically</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-actions">
+                <button class="quiz-check-btn" data-quiz-target="quiz-module-3">Check answers</button>
+                <button class="quiz-reset-btn" data-quiz-target="quiz-module-3">Try again</button>
+              </div>
+              <div class="quiz-overall-feedback"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="module tone-base" id="module-4" data-module-name="Local Storage">
+      <div class="module-content">
+        <div class="module-header animate-in">
+          <div class="module-number">04</div>
+          <div class="module-heading">
+            <div class="practical-note">Why you should care: this explains the real “database” of the app and its tradeoffs.</div>
+            <h2>The outside world is not a server. It is your browser drawer.</h2>
+            <p>
+              Picture a locked desk drawer with two notebooks inside. One notebook stores the durable shelf. The other notebook stores a convenient snapshot of what the app last showed you.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen animate-in">
+            <h3>The three pieces of persistence</h3>
+            <div class="vault-grid stagger-children">
+              <div class="vault-card animate-in">
+                <small>Notebook 1</small>
+                <strong>Product store</strong>
+                <p>Lives under the key <code>skincare-local-product-store</code>. It keeps the real list of products and the next numeric ID.</p>
+              </div>
+              <div class="vault-card animate-in">
+                <small>Notebook 2</small>
+                <strong>Shelf snapshot</strong>
+                <p>Lives under <code>skincare-shelf-snapshot</code>. It stores products, pairings, tags, and a timestamp so refreshes open fast.</p>
+              </div>
+              <div class="vault-card animate-in">
+                <small>Rulebook</small>
+                <strong>Static dataset</strong>
+                <p>This is not saved by the user at all. It ships with the app bundle as code and comes back every load.</p>
+              </div>
+            </div>
+            <div class="insight-card">
+              <strong>Aha!</strong>
+              <p>Local-first software often uses more than one persistence layer. The trick is knowing which layer is authoritative and which one is just a speed shortcut.</p>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Which drawer are you debugging?</h3>
+            <div class="scenario-buttons" data-tab-root>
+              <button class="scenario-button active" data-tab-group="drawer" data-tab-target="drawer-store">Product store</button>
+              <button class="scenario-button" data-tab-group="drawer" data-tab-target="drawer-snapshot">Snapshot cache</button>
+              <button class="scenario-button" data-tab-group="drawer" data-tab-target="drawer-dataset">Dataset</button>
+            </div>
+            <div class="flow-panels">
+              <div class="tab-panel active" data-tab-panel="drawer-store">
+                <div class="scenario-panel">
+                  <h4>Use this drawer when products disappear entirely</h4>
+                  <p>If a product is gone after refresh, the durable store is involved. This is the closest thing the app has to a database.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="drawer-snapshot">
+                <div class="scenario-panel">
+                  <h4>Use this drawer when the UI reopens stale information</h4>
+                  <p>If the app briefly shows old pairings or old tags before refreshing, the snapshot notebook is part of the story.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="drawer-dataset">
+                <div class="scenario-panel">
+                  <h4>Use this drawer when the analyzer never learned a concept</h4>
+                  <p>If a product contains a new ingredient spelling and the app misses it every time, the rulebook needs more knowledge.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Code ↔ English: writing to the durable shelf</h3>
+            <div class="translation-block">
+              <div class="translation-code">
+                <span class="translation-label">Code</span>
+                <pre><code>export const addStoredProduct = (payload: ProductInput) => {
+  const store = loadStore();
+  const createdProduct = buildProduct(store.nextId, payload);
+  const nextStore = {
+    version: PRODUCT_STORE_VERSION,
+    nextId: store.nextId + 1,
+    products: [...store.products, createdProduct],
+  } satisfies ProductStore;
+
+  saveStore(nextStore);
+  return createdProduct;
+};</code></pre>
+              </div>
+              <div class="translation-english">
+                <span class="translation-label">Plain English</span>
+                <div class="translation-lines">
+                  <p>Open the current shelf drawer and read the latest stored data.</p>
+                  <p>Turn the new form input into a finished product with an ID and analyzed tags.</p>
+                  <p>Build the next version of the store with one higher ID and one more product.</p>
+                  <p>Write that whole new store back into browser storage.</p>
+                  <p>Return the created product so the UI can update immediately.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Scenario quiz: storage tradeoffs in practice</h3>
+            <div class="quiz-container" id="quiz-module-4">
+              <div class="quiz-question-block" data-correct="b" data-success="Exactly. localStorage is tied to a browser profile, so switching browsers or devices breaks continuity." data-error="Not quite. This app intentionally stays local, so there is no shared cloud account carrying data across devices.">
+                <h4>A user says, “My shelf is gone on my phone, but it exists on my laptop.” What is the best explanation?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>The dataset forgot the products</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>The shelf lives in browser-local storage, not shared cloud storage</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>React only works on one device at a time</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="a" data-success="Yes. If you want multi-device persistence, the architectural change is bigger than one bugfix. You need a real backend or sync layer." data-error="Almost. Better wording helps, but the core product boundary is the missing sync system.">
+                <h4>You want shelves to sync across devices. What kind of change is that?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>An architecture expansion beyond local-only storage</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>A CSS-only tweak</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>A tag-label naming fix</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="c" data-success="Exactly. If the UI opens old but structurally valid data, the snapshot notebook is where that stale picture came from." data-error="Not quite. The key clue is that the shelf reopens quickly with old data, which is exactly the snapshot layer’s job.">
+                <h4>Which layer would you check first if the app opens instantly with an outdated analysis and then corrects itself later?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>The Google Fonts request</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>The product type labels</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>The snapshot cache</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-actions">
+                <button class="quiz-check-btn" data-quiz-target="quiz-module-4">Check answers</button>
+                <button class="quiz-reset-btn" data-quiz-target="quiz-module-4">Try again</button>
+              </div>
+              <div class="quiz-overall-feedback"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="module tone-warm" id="module-5" data-module-name="Rules">
+      <div class="module-content">
+        <div class="module-header animate-in">
+          <div class="module-number">05</div>
+          <div class="module-heading">
+            <div class="practical-note">Why you should care: this is where you learn the difference between code logic and domain knowledge.</div>
+            <h2>The clever trick is not magic. It is a rule engine with a broad vocabulary.</h2>
+            <p>
+              The best metaphor here is a matchmaker with a giant address book. The app does not “understand skincare” in a human sense. It recognizes names, groups them into tags, then checks those tags against a curated list of relationships.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen animate-in">
+            <h3>The multilingual ingredient ear</h3>
+            <div class="pattern-grid stagger-children">
+              <div class="pattern-card animate-in">
+                <small>English</small>
+                <strong>glycolic acid</strong>
+                <p>Maps to the AHA tag.</p>
+              </div>
+              <div class="pattern-card animate-in">
+                <small>French</small>
+                <strong>acide glycolique</strong>
+                <p>Still maps to the AHA tag.</p>
+              </div>
+              <div class="pattern-card animate-in">
+                <small>Chinese</small>
+                <strong>视黄醇</strong>
+                <p>Maps to the retinoid tag.</p>
+              </div>
+              <div class="pattern-card animate-in">
+                <small>Synonym</small>
+                <strong>nicotinamide</strong>
+                <p>Still maps to niacinamide.</p>
+              </div>
+            </div>
+            <p>
+              This is a great example of domain knowledge living in data. When you tell AI “expand the keyword catalog,” you are asking for a dataset improvement, not a new algorithm.
+            </p>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Try a few real rule combinations</h3>
+            <div class="rule-buttons" data-tab-root>
+              <button class="rule-button active" data-tab-group="rules" data-tab-target="rule-aha-bha">AHA + BHA</button>
+              <button class="rule-button" data-tab-group="rules" data-tab-target="rule-retinoid-aha">Retinoid + AHA</button>
+              <button class="rule-button" data-tab-group="rules" data-tab-target="rule-cer-pan">Ceramides + Panthenol</button>
+              <button class="rule-button" data-tab-group="rules" data-tab-target="rule-vitc-ferulic">Vitamin C + Ferulic Acid</button>
+            </div>
+            <div class="flow-panels">
+              <div class="tab-panel active" data-tab-panel="rule-aha-bha">
+                <div class="rule-panel">
+                  <span class="status-pill status-pill--duplicate">Duplicate</span>
+                  <h4>AHA + BHA</h4>
+                  <p>These are overlapping exfoliation lanes. The app says “prefer one exfoliating lane at a time.”</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="rule-retinoid-aha">
+                <div class="rule-panel">
+                  <span class="status-pill status-pill--avoid">Avoid</span>
+                  <h4>Retinoid + AHA</h4>
+                  <p>These stack strong resurfacing behavior, so the analyzer treats them as a same-routine risk.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="rule-cer-pan">
+                <div class="rule-panel">
+                  <span class="status-pill status-pill--recommended">Recommended</span>
+                  <h4>Ceramides + Panthenol</h4>
+                  <p>This is a recovery-friendly, barrier-support pairing. The app treats it as restorative rather than stressful.</p>
+                </div>
+              </div>
+              <div class="tab-panel" data-tab-panel="rule-vitc-ferulic">
+                <div class="rule-panel">
+                  <span class="status-pill status-pill--recommended">Recommended</span>
+                  <h4>Vitamin C + Ferulic Acid</h4>
+                  <p>This is one of the classic antioxidant partnerships in the dataset, so the app marks it high-value.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Code ↔ English: keyword detection in the analyzer</h3>
+            <div class="translation-block">
+              <div class="translation-code">
+                <span class="translation-label">Code</span>
+                <pre><code>pairingData.tagKeywords.forEach((keywordRule) => {
+  const normalizedKeyword = normalizeText(keywordRule.keyword);
+  if (!normalizedKeyword) {
+    return;
+  }
+
+  const didMatch =
+    keywordRule.match_type === "exact"
+      ? exactTokens.has(normalizedKeyword)
+      : normalizedIngredients.includes(normalizedKeyword);
+
+  if (didMatch) {
+    matchedTags.push(keywordRule.tag_code);
+  }
+});</code></pre>
+              </div>
+              <div class="translation-english">
+                <span class="translation-label">Plain English</span>
+                <div class="translation-lines">
+                  <p>Walk through every known ingredient keyword in the dataset.</p>
+                  <p>Normalize the keyword so accents, case, and formatting differences are less likely to break matching.</p>
+                  <p>Use either strict token matching or looser “contains” matching depending on the rule.</p>
+                  <p>If the product text matches, add that tag to the detected list.</p>
+                </div>
+              </div>
+            </div>
+            <div class="insight-card">
+              <strong>Aha!</strong>
+              <p>Rule engines often look deceptively simple. Their power comes from the quality of the catalog they read, not just the loop that iterates through it.</p>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Scenario quiz: rule-engine thinking</h3>
+            <div class="quiz-container" id="quiz-module-5">
+              <div class="quiz-question-block" data-correct="a" data-success="Exactly. A missed spelling is usually a keyword-catalog gap before it is a logic bug." data-error="Not quite. When an ingredient text is never recognized, the first suspect is the keyword dataset the detector reads.">
+                <h4>A product contains a French ingredient spelling the app never recognizes. What kind of fix is most likely needed?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>Add or improve keyword entries in the dataset</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Change the footer styling</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Remove React StrictMode</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="c" data-success="Yes. The app first maps ingredients to tags, then tags to pair rules. That two-step model is the core architecture." data-error="Close. The app does not compare raw ingredients directly against every pairing rule. It first translates ingredients into tags.">
+                <h4>What is the analyzer’s real two-step mental model?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>Ingredients → CSS classes → cards</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Products → browser tabs → timestamps</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Ingredients → tags → rule comparisons</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="b" data-success="Exactly. You would extend the productTypeKeywords list, because this behavior is also data-driven." data-error="Not quite. Product-type guessing is also keyword-driven, so the correct home for new naming patterns is the dataset.">
+                <h4>You want “emulsion” to be recognized as a moisturizer. Where would that change likely live?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>In the progress bar script</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>In the product type keyword data</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Only in the HTML head</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-actions">
+                <button class="quiz-check-btn" data-quiz-target="quiz-module-5">Check answers</button>
+                <button class="quiz-reset-btn" data-quiz-target="quiz-module-5">Try again</button>
+              </div>
+              <div class="quiz-overall-feedback"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="module tone-base" id="module-6" data-module-name="Debugging">
+      <div class="module-content">
+        <div class="module-header animate-in">
+          <div class="module-number">06</div>
+          <div class="module-heading">
+            <div class="practical-note">Why you should care: this is the escape hatch when an AI assistant loops or guesses.</div>
+            <h2>When things break, debug by symptom, not by panic.</h2>
+            <p>
+              Think like a medical triage nurse. Do not inspect everything. Start from the symptom, pick the most likely layer, and move inward. That is how you break out of useless AI bug loops.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen animate-in">
+            <h3>Pick a symptom, then inspect the first likely layer</h3>
+            <div class="symptom-grid stagger-children">
+              <div class="debug-card animate-in">
+                <small>Symptom</small>
+                <strong>“I added a product and it vanished on refresh.”</strong>
+                <p>Start with <code>localProductStore.ts</code>. The durable shelf write is your first suspect.</p>
+              </div>
+              <div class="debug-card animate-in">
+                <small>Symptom</small>
+                <strong>“The shelf returns, but the warnings are outdated.”</strong>
+                <p>Start with <code>localCache.ts</code> and the snapshot refresh path.</p>
+              </div>
+              <div class="debug-card animate-in">
+                <small>Symptom</small>
+                <strong>“This ingredient is never recognized.”</strong>
+                <p>Start with <code>pairingDataset.ts</code> and <code>detectTags</code>.</p>
+              </div>
+              <div class="debug-card animate-in">
+                <small>Symptom</small>
+                <strong>“The card says the wrong explanation.”</strong>
+                <p>Start with conflict and compatibility rules in the dataset, then the reason-selection logic.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>The big picture you can now use in prompts</h3>
+            <div class="prompt-grid">
+              <div class="prompt-card">
+                <small>Prompt pattern</small>
+                <strong>Rule update</strong>
+                <p>“Add a new compatibility rule in <code>pairingDataset.ts</code> and keep the analysis engine unchanged.”</p>
+              </div>
+              <div class="prompt-card">
+                <small>Prompt pattern</small>
+                <strong>Storage fix</strong>
+                <p>“Investigate why <code>localCache.ts</code> can restore stale pairings after refresh.”</p>
+              </div>
+              <div class="prompt-card">
+                <small>Prompt pattern</small>
+                <strong>UI change</strong>
+                <p>“Add a manual tag override in <code>App.tsx</code> and pass it through the product payload.”</p>
+              </div>
+            </div>
+            <div class="insight-card">
+              <strong>Aha!</strong>
+              <p>The architecture is now small enough to carry in your head: UI orchestration, service verbs, local persistence, and a dataset-driven rule engine. That mental model is how you become hard to mislead.</p>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Code ↔ English: refuse bad snapshot data</h3>
+            <div class="translation-block">
+              <div class="translation-code">
+                <span class="translation-label">Code</span>
+                <pre><code>if (
+  parsedSnapshot.version !== LOCAL_SHELF_SNAPSHOT_VERSION ||
+  !Array.isArray(parsedSnapshot.products) ||
+  !isPairingAnalysis(parsedSnapshot.pairings) ||
+  !Array.isArray(parsedSnapshot.tags) ||
+  typeof parsedSnapshot.savedAt !== "string"
+) {
+  return null;
+}</code></pre>
+              </div>
+              <div class="translation-english">
+                <span class="translation-label">Plain English</span>
+                <div class="translation-lines">
+                  <p>Before trusting saved snapshot data, check that its version and shape still match what the app expects.</p>
+                  <p>If products, tags, pairings, or the timestamp look wrong, reject the whole snapshot.</p>
+                  <p>This is defensive programming: it is better to rebuild safely than to render nonsense from corrupted stored data.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen animate-in">
+            <h3>Final quiz: can you escape an AI bug loop?</h3>
+            <div class="quiz-container" id="quiz-module-6">
+              <div class="quiz-question-block" data-correct="b" data-success="Exactly. A symptom-first debugging path is the fastest way to stop random AI guessing and start narrowing scope." data-error="Not quite. The healthiest move is not to inspect everything. It is to match the symptom to the most likely layer first.">
+                <h4>If an AI assistant starts making random edits everywhere, what is the best reset move?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>Ask it to rewrite the entire app</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Name the symptom and constrain the likely layer</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Delete the dataset first</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="a" data-success="Yes. Bad or missing tags mean the analyzer never learned the ingredient correctly, so that path starts at detection and data." data-error="Close. If the pair is never flagged, the earliest useful question is whether the ingredients were tagged correctly at all.">
+                <h4>A pair should have been flagged, but it never appears. What is your first architecture question?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>Were the relevant tags detected from the ingredient text?</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>Did the hero title use the right font?</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>Did the browser cache the favicon?</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-question-block" data-correct="c" data-success="Exactly. That sentence shows ownership, scope, and intended behavior. It gives an AI agent far less room to hallucinate." data-error="Not quite. The most useful prompt names the layer, file, and intended behavior in one sentence.">
+                <h4>Which prompt would best guide an AI assistant to a targeted fix?</h4>
+                <div class="quiz-options">
+                  <button class="quiz-option" data-value="a"><div class="quiz-option-radio"></div><span>“Fix everything weird.”</span></button>
+                  <button class="quiz-option" data-value="b"><div class="quiz-option-radio"></div><span>“Make the app smarter somehow.”</span></button>
+                  <button class="quiz-option" data-value="c"><div class="quiz-option-radio"></div><span>“Add a new keyword in pairingDataset.ts so French vitamin C ingredients map to the direct vitamin C tag.”</span></button>
+                </div>
+                <div class="quiz-feedback"></div>
+              </div>
+              <div class="quiz-actions">
+                <button class="quiz-check-btn" data-quiz-target="quiz-module-6">Check answers</button>
+                <button class="quiz-reset-btn" data-quiz-target="quiz-module-6">Try again</button>
+              </div>
+              <div class="quiz-overall-feedback"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="course-footer">
+      <div class="course-footer-inner">
+        <h3>What you can say to AI now that you could not say before</h3>
+        <p>
+          You can ask for a new compatibility rule without touching analyzer logic, request a storage fix in the local snapshot layer, or trace a missing warning back through tags, rules, and UI rendering. That is real leverage.
+        </p>
+        <p>
+          SkinPair is a small codebase, but it teaches a big lesson: many modern apps are mostly careful coordination of data, rules, and user trust.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const tooltip = document.getElementById("tooltipBubble");
+        const progressBar = document.getElementById("progressBar");
+        const modules = Array.from(document.querySelectorAll(".module"));
+        const navDots = Array.from(document.querySelectorAll(".nav-dot"));
+        let tooltipTarget = null;
+        let rafScheduled = false;
+
+        document.querySelectorAll(".stagger-children").forEach((parent) => {
+          Array.from(parent.children).forEach((child, index) => {
+            child.style.setProperty("--stagger-index", String(index));
+          });
+        });
+
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+        );
+
+        document.querySelectorAll(".animate-in").forEach((element) => revealObserver.observe(element));
+
+        const setActiveModule = (id) => {
+          navDots.forEach((dot) => {
+            dot.classList.toggle("active", dot.dataset.target === id);
+          });
+        };
+
+        const moduleObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveModule(entry.target.id);
+              }
+            });
+          },
+          { threshold: 0.45 },
+        );
+
+        modules.forEach((module) => moduleObserver.observe(module));
+
+        const updateProgress = () => {
+          const scrollTop = window.scrollY;
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+          progressBar.style.width = progress + "%";
+          progressBar.setAttribute("aria-valuenow", String(Math.round(progress)));
+          rafScheduled = false;
+        };
+
+        const requestProgress = () => {
+          if (rafScheduled) {
+            return;
+          }
+          rafScheduled = true;
+          requestAnimationFrame(updateProgress);
+        };
+
+        window.addEventListener("scroll", requestProgress, { passive: true });
+        window.addEventListener("resize", requestProgress);
+        updateProgress();
+
+        navDots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const target = document.getElementById(dot.dataset.target);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+
+        document.querySelectorAll("[data-tab-root]").forEach((root) => {
+          const buttons = root.querySelectorAll("[data-tab-group]");
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const group = button.getAttribute("data-tab-group");
+              const target = button.getAttribute("data-tab-target");
+              root.querySelectorAll(`[data-tab-group="${group}"]`).forEach((candidate) => {
+                candidate.classList.remove("active");
+              });
+              button.classList.add("active");
+              root.parentElement.querySelectorAll(`[data-tab-panel]`).forEach((panel) => {
+                panel.classList.toggle("active", panel.getAttribute("data-tab-panel") === target);
+              });
+            });
+          });
+        });
+
+        const positionTooltip = (element) => {
+          const rect = element.getBoundingClientRect();
+          const tooltipRect = tooltip.getBoundingClientRect();
+          const spacing = 12;
+          let top = rect.bottom + spacing;
+          if (top + tooltipRect.height > window.innerHeight - spacing) {
+            top = rect.top - tooltipRect.height - spacing;
+          }
+          let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+          left = Math.max(spacing, Math.min(left, window.innerWidth - tooltipRect.width - spacing));
+          tooltip.style.top = `${top}px`;
+          tooltip.style.left = `${left}px`;
+        };
+
+        const showTooltip = (element) => {
+          const definition = element.getAttribute("data-definition");
+          if (!definition) {
+            return;
+          }
+          tooltip.textContent = definition;
+          tooltip.classList.add("visible");
+          tooltip.setAttribute("aria-hidden", "false");
+          tooltipTarget = element;
+          positionTooltip(element);
+        };
+
+        const hideTooltip = () => {
+          tooltip.classList.remove("visible");
+          tooltip.setAttribute("aria-hidden", "true");
+          tooltipTarget = null;
+        };
+
+        document.querySelectorAll(".glossary").forEach((term) => {
+          term.setAttribute("tabindex", "0");
+          term.addEventListener("mouseenter", () => showTooltip(term));
+          term.addEventListener("mouseleave", hideTooltip);
+          term.addEventListener("focus", () => showTooltip(term));
+          term.addEventListener("blur", hideTooltip);
+          term.addEventListener("click", (event) => {
+            event.stopPropagation();
+            if (tooltipTarget === term && tooltip.classList.contains("visible")) {
+              hideTooltip();
+            } else {
+              showTooltip(term);
+            }
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!(event.target instanceof HTMLElement) || !event.target.closest(".glossary")) {
+            hideTooltip();
+          }
+        });
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (tooltipTarget) {
+              positionTooltip(tooltipTarget);
+            }
+          },
+          { passive: true },
+        );
+
+        document.querySelectorAll(".quiz-option").forEach((option) => {
+          option.addEventListener("click", () => {
+            const block = option.closest(".quiz-question-block");
+            if (!block) {
+              return;
+            }
+            if (block.dataset.locked === "true") {
+              return;
+            }
+            block.querySelectorAll(".quiz-option").forEach((candidate) => {
+              candidate.classList.remove("selected");
+            });
+            option.classList.add("selected");
+          });
+        });
+
+        const checkQuiz = (quizId) => {
+          const container = document.getElementById(quizId);
+          if (!container) {
+            return;
+          }
+          const questions = Array.from(container.querySelectorAll(".quiz-question-block"));
+          let correctCount = 0;
+
+          questions.forEach((question) => {
+            const selected = question.querySelector(".quiz-option.selected");
+            const feedback = question.querySelector(".quiz-feedback");
+            const correctValue = question.dataset.correct;
+
+            if (!feedback) {
+              return;
+            }
+
+            if (!selected) {
+              feedback.textContent = "Pick an answer first.";
+              feedback.className = "quiz-feedback show warning";
+              return;
+            }
+
+            const options = question.querySelectorAll(".quiz-option");
+            options.forEach((option) => {
+              option.setAttribute("aria-disabled", "true");
+            });
+
+            if (selected.dataset.value === correctValue) {
+              correctCount += 1;
+              selected.classList.add("correct");
+              feedback.textContent = question.dataset.success || "";
+              feedback.className = "quiz-feedback show success";
+            } else {
+              selected.classList.add("incorrect");
+              const correctOption = question.querySelector(`.quiz-option[data-value="${correctValue}"]`);
+              if (correctOption) {
+                correctOption.classList.add("correct");
+              }
+              feedback.textContent = question.dataset.error || "";
+              feedback.className = "quiz-feedback show error";
+            }
+
+            question.dataset.locked = "true";
+          });
+
+          const overall = container.querySelector(".quiz-overall-feedback");
+          if (overall) {
+            overall.textContent =
+              correctCount === questions.length
+                ? "Nice. The architecture choices are starting to feel predictable, which is exactly the goal."
+                : "The important win is knowing how to reason about the next bug or feature request. Try again if you want another lap.";
+          }
+        };
+
+        const resetQuiz = (quizId) => {
+          const container = document.getElementById(quizId);
+          if (!container) {
+            return;
+          }
+          container.querySelectorAll(".quiz-question-block").forEach((question) => {
+            question.dataset.locked = "false";
+            question.querySelectorAll(".quiz-option").forEach((option) => {
+              option.classList.remove("selected", "correct", "incorrect");
+              option.removeAttribute("aria-disabled");
+            });
+            const feedback = question.querySelector(".quiz-feedback");
+            if (feedback) {
+              feedback.textContent = "";
+              feedback.className = "quiz-feedback";
+            }
+          });
+          const overall = container.querySelector(".quiz-overall-feedback");
+          if (overall) {
+            overall.textContent = "";
+          }
+        };
+
+        document.querySelectorAll(".quiz-check-btn").forEach((button) => {
+          button.addEventListener("click", () => {
+            checkQuiz(button.getAttribute("data-quiz-target"));
+          });
+        });
+
+        document.querySelectorAll(".quiz-reset-btn").forEach((button) => {
+          button.addEventListener("click", () => {
+            resetQuiz(button.getAttribute("data-quiz-target"));
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          const activeElement = document.activeElement;
+          if (activeElement && ["INPUT", "TEXTAREA"].includes(activeElement.tagName)) {
+            return;
+          }
+          if (event.key !== "ArrowDown" && event.key !== "ArrowUp") {
+            return;
+          }
+          const currentIndex = modules.findIndex((module) => {
+            const rect = module.getBoundingClientRect();
+            return rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.3;
+          });
+          if (currentIndex === -1) {
+            return;
+          }
+          const nextIndex = event.key === "ArrowDown" ? currentIndex + 1 : currentIndex - 1;
+          const target = modules[nextIndex];
+          if (target) {
+            event.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

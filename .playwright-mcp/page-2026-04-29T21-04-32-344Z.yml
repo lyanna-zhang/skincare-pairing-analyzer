@@ -1,0 +1,58 @@
+- generic [ref=e4]:
+  - region "Product information" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: SkinPair
+      - generic [ref=e8]: Check skincare conflicts before you layer.
+  - main [ref=e9]:
+    - generic [ref=e10]:
+      - heading "Effortless Precision." [level=1] [ref=e11]
+      - paragraph [ref=e12]: Spot which products should not be layered together and which pairings support each other.
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - heading "Add Product" [level=2] [ref=e15]
+        - paragraph [ref=e16]: Add a product to compare it against the rest of your shelf.
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - generic [ref=e19]: Product Name
+            - textbox "Product Name" [ref=e20]:
+              - /placeholder: e.g. Skin Restoration Cream
+          - generic [ref=e21]:
+            - generic [ref=e22]: Ingredients
+            - textbox "Ingredients" [ref=e23]:
+              - /placeholder: Paste full ingredient list here...
+          - button "Add to Shelf" [ref=e25] [cursor=pointer]
+      - generic [ref=e26]:
+        - heading "My Shelf" [level=2] [ref=e27]
+        - paragraph [ref=e28]: Your current shelf, ready for a quick compatibility check.
+        - paragraph [ref=e29]: No saved products yet.
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - heading "Shelf Analysis" [level=2] [ref=e33]
+          - paragraph [ref=e34]: A clear view of the pairings that may not work well together.
+        - button "Analyze My Shelf" [ref=e36] [cursor=pointer]
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - heading "Do Not Layer Together" [level=2] [ref=e39]
+          - paragraph [ref=e40]: Pairs from your shelf that are better kept apart in the same routine.
+          - paragraph [ref=e41]: No high-risk or duplicate layering conflicts detected yet.
+        - generic [ref=e42]:
+          - heading "Works Well Together" [level=2] [ref=e43]
+          - paragraph [ref=e44]: Pairs from your shelf that are generally easy to layer together.
+          - paragraph [ref=e45]: No supportive pairings found for the current shelf.
+  - contentinfo [ref=e46]:
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e49]: © 2026 SkinPair. Effortless Precision.
+        - link "Visit Lyanna's GitHub profile" [ref=e50] [cursor=pointer]:
+          - /url: https://github.com/lyanna-zhang
+          - generic [ref=e51]: Built by Lyanna
+          - generic [ref=e52]: •
+          - img [ref=e54]
+      - generic [ref=e56]:
+        - link "Privacy" [ref=e57] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms" [ref=e58] [cursor=pointer]:
+          - /url: "#"
+        - link "Support" [ref=e59] [cursor=pointer]:
+          - /url: "#"
