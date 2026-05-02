@@ -44,13 +44,7 @@ const formatSavedAt = (savedAt: string | null) => {
   }).format(date);
 };
 
-const ConflictLevelIcon = ({ level }: { level: string }) => {
-  if (level === "avoid") return <span className="conflict-icon conflict-icon--avoid">!</span>;
-  if (level === "caution") return <span className="conflict-icon conflict-icon--caution">~</span>;
-  return <span className="conflict-icon conflict-icon--duplicate">=</span>;
-};
-
-const ConflictCard = ({
+const ConflictRow = ({
   item,
   formatTagLabel,
 }: {
@@ -58,25 +52,21 @@ const ConflictCard = ({
   formatTagLabel: (tagCode: string) => string;
 }) => {
   const primaryReason = getPrimaryReason(item.reasons);
-  const reasonLabel = primaryReason
+  const tagLabel = primaryReason
     ? `${formatTagLabel(primaryReason.tags[0])} + ${formatTagLabel(primaryReason.tags[1])}`
     : "Ingredient overlap";
 
   return (
-    <article className={`pairing-card pairing-card--${item.conflict_level}`}>
-      <div className="pairing-card-header">
-        <ConflictLevelIcon level={item.conflict_level} />
-        <span className="pairing-eyebrow">{conflictLevelLabels[item.conflict_level]}</span>
+    <article className={`conflict-row conflict-row--${item.conflict_level}`}>
+      <div className="conflict-row-body">
+        <span className="conflict-row-level">{conflictLevelLabels[item.conflict_level]}</span>
+        <h3 className="conflict-row-names">
+          <span>{item.products[0].name}</span>
+          <span className="conflict-row-plus" aria-hidden="true">×</span>
+          <span>{item.products[1].name}</span>
+        </h3>
       </div>
-      <h3 className="pairing-title">
-        <span className="pairing-product">{item.products[0].name}</span>
-        <span className="pairing-plus" aria-hidden="true">+</span>
-        <span className="pairing-product">{item.products[1].name}</span>
-      </h3>
-      <div className="pairing-reason">
-        <span className="pairing-reason-tags">{reasonLabel}</span>
-        <p className="pairing-reason-note">{getShortReasonText(primaryReason, item.recommendation)}</p>
-      </div>
+      <span className="conflict-row-tag">{tagLabel}</span>
     </article>
   );
 };
@@ -483,9 +473,9 @@ function App() {
             </div>
 
             {displayedConflicts.length > 0 ? (
-              <div className="conflicts-grid">
+              <div className="conflicts-list">
                 {displayedConflicts.map((item) => (
-                  <ConflictCard
+                  <ConflictRow
                     key={`${item.products.map((p) => p.id).join("-")}-${item.conflict_level}`}
                     item={item}
                     formatTagLabel={formatTagLabel}

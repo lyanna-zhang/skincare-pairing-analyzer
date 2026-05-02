@@ -225,12 +225,17 @@ export const analyzePairings = (products: Product[]): PairingAnalysis => {
             first.recommendation.localeCompare(second.recommendation),
         )[0];
 
+        const isRinseOff = left.product_type === "cleanser" || right.product_type === "cleanser";
+        const rawLevel = topConflict.level as ProductPairConflict["conflict_level"];
+        const effectiveLevel: ProductPairConflict["conflict_level"] =
+          isRinseOff && rawLevel === "avoid" ? "caution" : rawLevel;
+
         conflicts.push({
           products: [
             { id: left.id, name: left.name, product_type: left.product_type },
             { id: right.id, name: right.name, product_type: right.product_type },
           ],
-          conflict_level: topConflict.level as ProductPairConflict["conflict_level"],
+          conflict_level: effectiveLevel,
           recommendation: topConflict.recommendation,
           reasons: serializeReasons(
             conflictReasons.map((reason) => ({
