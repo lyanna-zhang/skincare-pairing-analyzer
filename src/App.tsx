@@ -26,52 +26,32 @@ import type {
   TagMetadata,
 } from "./types";
 
+const SENSITIVE_SKIN_KEY = "skinpair_sensitive_skin";
+
 const buildTagLookup = (tags: TagMetadata[]): Record<string, TagMetadata> =>
   Object.fromEntries(tags.map((tag) => [tag.code, tag]));
 
 const getPrimaryReason = (reasons: PairingReason[]) => reasons[0] ?? null;
 
 const getShortReasonText = (reason: PairingReason | null, fallback: string) => {
-  const source = reason?.notes?.trim() || fallback.trim();
-  const firstSentence = source.match(/[^.!?]+[.!?]?/)?.[0]?.trim();
-  return firstSentence || source;
+  const source = reason?.recommendation?.trim() || fallback.trim();
+  return source;
 };
 
 const formatSavedAt = (savedAt: string | null) => {
-  if (!savedAt) {
-    return null;
-  }
-
+  if (!savedAt) return null;
   const date = new Date(savedAt);
-  if (Number.isNaN(date.getTime())) {
-    return null;
-  }
-
+  if (Number.isNaN(date.getTime())) return null;
   return new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
 };
 
-const PairingReasonSummary = ({
-  reason,
-  fallback,
-  formatTagLabel,
-}: {
-  reason: PairingReason | null;
-  fallback: string;
-  formatTagLabel: (tagCode: string) => string;
-}) => {
-  const reasonLabel = reason
-    ? `${formatTagLabel(reason.tags[0])} + ${formatTagLabel(reason.tags[1])}`
-    : "Ingredient overlap";
-
-  return (
-    <div className="pairing-reason">
-      <p className="pairing-reason-tags">{reasonLabel}</p>
-      <p className="pairing-reason-note">{getShortReasonText(reason, fallback)}</p>
-    </div>
-  );
+const ConflictLevelIcon = ({ level }: { level: string }) => {
+  if (level === "avoid") return <span className="conflict-icon conflict-icon--avoid">!</span>;
+  if (level === "caution") return <span className="conflict-icon conflict-icon--caution">~</span>;
+  return <span className="conflict-icon conflict-icon--duplicate">=</span>;
 };
 
 const ConflictCard = ({
@@ -82,20 +62,25 @@ const ConflictCard = ({
   formatTagLabel: (tagCode: string) => string;
 }) => {
   const primaryReason = getPrimaryReason(item.reasons);
+  const reasonLabel = primaryReason
+    ? `${formatTagLabel(primaryReason.tags[0])} + ${formatTagLabel(primaryReason.tags[1])}`
+    : "Ingredient overlap";
 
   return (
     <article className={`pairing-card pairing-card--${item.conflict_level}`}>
-      <p className="pairing-eyebrow">{conflictLevelLabels[item.conflict_level]}</p>
+      <div className="pairing-card-header">
+        <ConflictLevelIcon level={item.conflict_level} />
+        <span className="pairing-eyebrow">{conflictLevelLabels[item.conflict_level]}</span>
+      </div>
       <h3 className="pairing-title">
-        <span>{item.products[0].name}</span>
-        <span className="pairing-plus">+</span>
-        <span>{item.products[1].name}</span>
+        <span className="pairing-product">{item.products[0].name}</span>
+        <span className="pairing-plus" aria-hidden="true">+</span>
+        <span className="pairing-product">{item.products[1].name}</span>
       </h3>
-      <PairingReasonSummary
-        reason={primaryReason}
-        fallback={item.recommendation}
-        formatTagLabel={formatTagLabel}
-      />
+      <div className="pairing-reason">
+        <span className="pairing-reason-tags">{reasonLabel}</span>
+        <p className="pairing-reason-note">{getShortReasonText(primaryReason, item.recommendation)}</p>
+      </div>
     </article>
   );
 };
@@ -108,23 +93,53 @@ const CompatibilityCard = ({
   formatTagLabel: (tagCode: string) => string;
 }) => {
   const primaryReason = getPrimaryReason(item.reasons);
+  const reasonLabel = primaryReason
+    ? `${formatTagLabel(primaryReason.tags[0])} + ${formatTagLabel(primaryReason.tags[1])}`
+    : "Ingredient synergy";
 
   return (
     <article className="pairing-card pairing-card--compatible">
-      <p className="pairing-eyebrow">{compatibilityLevelLabels[item.compatibility_level]}</p>
+      <div className="pairing-card-header">
+        <span className="conflict-icon conflict-icon--compatible">✓</span>
+        <span className="pairing-eyebrow">{compatibilityLevelLabels[item.compatibility_level]}</span>
+      </div>
       <h3 className="pairing-title">
-        <span>{item.products[0].name}</span>
-        <span className="pairing-plus">+</span>
-        <span>{item.products[1].name}</span>
+        <span className="pairing-product">{item.products[0].name}</span>
+        <span className="pairing-plus" aria-hidden="true">+</span>
+        <span className="pairing-product">{item.products[1].name}</span>
       </h3>
-      <PairingReasonSummary
-        reason={primaryReason}
-        fallback={item.recommendation}
-        formatTagLabel={formatTagLabel}
-      />
+      <div className="pairing-reason">
+        <span className="pairing-reason-tags">{reasonLabel}</span>
+        <p className="pairing-reason-note">{getShortReasonText(primaryReason, item.recommendation)}</p>
+      </div>
     </article>
   );
 };
+
+const SkinTypeToggle = ({
+  isSensitive,
+  onChange,
+}: {
+  isSensitive: boolean;
+  onChange: (val: boolean) => void;
+}) => (
+  <div className="skin-toggle" role="group" aria-label="Skin type setting">
+    <button
+      type="button"
+      className={`skin-toggle-option${!isSensitive ? " skin-toggle-option--active" : ""}`}
+      onClick={() => onChange(false)}
+    >
+      Normal Skin
+    </button>
+    <button
+      type="button"
+      className={`skin-toggle-option${isSensitive ? " skin-toggle-option--active" : ""}`}
+      onClick={() => onChange(true)}
+    >
+      Sensitive Skin
+    </button>
+  </div>
+);
 
 function App() {
   const [localSnapshot] = useState(() => loadLocalShelfSnapshot());
@@ -147,6 +162,22 @@ function App() {
     localSnapshot?.savedAt ?? null,
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSensitiveSkin, setIsSensitiveSkinState] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(SENSITIVE_SKIN_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const setIsSensitiveSkin = (val: boolean) => {
+    setIsSensitiveSkinState(val);
+    try {
+      localStorage.setItem(SENSITIVE_SKIN_KEY, String(val));
+    } catch {
+      // ignore
+    }
+  };
 
   const persistSnapshot = (
     nextProducts: Product[],
@@ -158,10 +189,7 @@ function App() {
       pairings: nextPairings,
       tags: nextTags,
     });
-
-    if (savedAt) {
-      setLocalSnapshotSavedAt(savedAt);
-    }
+    if (savedAt) setLocalSnapshotSavedAt(savedAt);
   };
 
   const loadSnapshot = async (mode: "initial" | "refresh" = "refresh") => {
@@ -174,7 +202,6 @@ function App() {
     } else {
       setIsRefreshingAnalysis(true);
     }
-
     setErrorMessage(null);
 
     try {
@@ -222,9 +249,7 @@ function App() {
 
   const handleAddProduct = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!name.trim() || !ingredientsText.trim()) {
-      return;
-    }
+    if (!name.trim() || !ingredientsText.trim()) return;
 
     const payload: ProductInput = {
       name: name.trim(),
@@ -286,6 +311,14 @@ function App() {
   };
 
   const formatTagLabel = (tagCode: string) => tagLookup[tagCode]?.name ?? tagCode;
+
+  const allConflicts = pairings?.conflicts ?? [];
+  const displayedConflicts = isSensitiveSkin
+    ? allConflicts
+    : allConflicts.filter((c) => c.conflict_level !== "caution");
+  const hiddenCautionCount = isSensitiveSkin
+    ? 0
+    : allConflicts.filter((c) => c.conflict_level === "caution").length;
 
   return (
     <div className="page-shell">
@@ -397,7 +430,7 @@ function App() {
                         onClick={() => void handleDeleteProduct(product.id)}
                         disabled={deletingProductId === product.id}
                       >
-                        <span aria-hidden="true">{deletingProductId === product.id ? "..." : "x"}</span>
+                        <span aria-hidden="true">{deletingProductId === product.id ? "..." : "×"}</span>
                       </button>
 
                       <div className="shelf-copy">
@@ -436,9 +469,14 @@ function App() {
           <section className="analysis-module">
             <div className="analysis-header">
               <div className="analysis-intro">
-                <h2 className="module-title">Shelf Analysis</h2>
+                <div className="analysis-title-row">
+                  <h2 className="module-title">Shelf Analysis</h2>
+                  <SkinTypeToggle isSensitive={isSensitiveSkin} onChange={setIsSensitiveSkin} />
+                </div>
                 <p className="module-helper">
-                  A clear view of the pairings that may not work well together.
+                  {isSensitiveSkin
+                    ? "Showing all conflicts, including caution-level combinations."
+                    : "Showing high-priority conflicts. Switch to Sensitive Skin to see more."}
                 </p>
               </div>
 
@@ -449,7 +487,7 @@ function App() {
                   onClick={handleAnalyzeShelf}
                   disabled={isLoading || isRefreshingAnalysis}
                 >
-                  {isRefreshingAnalysis ? "Analyzing Shelf..." : "Analyze My Shelf"}
+                  {isRefreshingAnalysis ? "Analyzing..." : "Analyze My Shelf"}
                 </button>
               </div>
             </div>
@@ -457,32 +495,60 @@ function App() {
             <section className="pairings-grid">
               <section className="pairing-panel pairing-panel--primary">
                 <h2 className="pairing-heading">Do Not Layer Together</h2>
-                <p className="module-helper">Pairs from your shelf that are better kept apart in the same routine.</p>
 
-                {pairings && pairings.conflicts.length > 0 ? (
-                  <div className="pairing-stack">
-                    {pairings.conflicts.map((item) => (
-                      <ConflictCard
-                        key={`${item.products.map((product) => product.id).join("-")}-${item.conflict_level}`}
-                        item={item}
-                        formatTagLabel={formatTagLabel}
-                      />
-                    ))}
-                  </div>
+                {displayedConflicts.length > 0 ? (
+                  <>
+                    <div className="pairing-stack">
+                      {displayedConflicts.map((item) => (
+                        <ConflictCard
+                          key={`${item.products.map((p) => p.id).join("-")}-${item.conflict_level}`}
+                          item={item}
+                          formatTagLabel={formatTagLabel}
+                        />
+                      ))}
+                    </div>
+                    {hiddenCautionCount > 0 && (
+                      <p className="hidden-conflicts-notice">
+                        {hiddenCautionCount} caution-level {hiddenCautionCount === 1 ? "conflict" : "conflicts"} hidden.{" "}
+                        <button
+                          type="button"
+                          className="hidden-conflicts-link"
+                          onClick={() => setIsSensitiveSkin(true)}
+                        >
+                          Switch to Sensitive Skin
+                        </button>{" "}
+                        to see them.
+                      </p>
+                    )}
+                  </>
                 ) : (
-                  <p className="empty-state">No high-risk or duplicate layering conflicts detected yet.</p>
+                  <>
+                    <p className="empty-state">No conflicts detected for the current shelf.</p>
+                    {hiddenCautionCount > 0 && (
+                      <p className="hidden-conflicts-notice">
+                        {hiddenCautionCount} caution-level {hiddenCautionCount === 1 ? "conflict" : "conflicts"} hidden.{" "}
+                        <button
+                          type="button"
+                          className="hidden-conflicts-link"
+                          onClick={() => setIsSensitiveSkin(true)}
+                        >
+                          Switch to Sensitive Skin
+                        </button>{" "}
+                        to see them.
+                      </p>
+                    )}
+                  </>
                 )}
               </section>
 
               <section className="pairing-panel">
                 <h2 className="pairing-heading">Works Well Together</h2>
-                <p className="module-helper">Pairs from your shelf that are generally easy to layer together.</p>
 
                 {pairings && pairings.compatibilities.length > 0 ? (
                   <div className="pairing-stack">
                     {pairings.compatibilities.map((item) => (
                       <CompatibilityCard
-                        key={`${item.products.map((product) => product.id).join("-")}-${item.compatibility_level}`}
+                        key={`${item.products.map((p) => p.id).join("-")}-${item.compatibility_level}`}
                         item={item}
                         formatTagLabel={formatTagLabel}
                       />
@@ -501,9 +567,7 @@ function App() {
             <span className="footer-copy">© 2026 SkinPair. Effortless Precision.</span>
             <div className="footer-author" aria-label="Site author">
               <span className="footer-author-text">Built by Lyanna</span>
-              <span className="footer-author-separator" aria-hidden="true">
-                •
-              </span>
+              <span className="footer-author-separator" aria-hidden="true">•</span>
               <a
                 className="footer-github-link"
                 href="https://github.com/lyanna-zhang"
