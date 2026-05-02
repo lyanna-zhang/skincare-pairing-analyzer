@@ -1,7 +1,7 @@
 # SkinPair — Effortless Precision
 
 ## Overview
-A skincare product compatibility checker that lets users add their products and get an analysis of which combinations to avoid and which work well together. All logic runs entirely in the browser — no backend server required.
+A skincare product conflict checker that lets users build a shelf of products and get a precise analysis of which ingredient combinations to avoid. All logic runs entirely in the browser — no backend server required.
 
 ## Architecture
 - **Framework**: React 18 + TypeScript + Vite

@@ -8,10 +8,7 @@ import {
 } from "./lib/shelfService";
 import { ProductNameInput } from "./components/ProductNameInput";
 import type { BeautyProduct } from "./lib/openBeautyFacts";
-import {
-  compatibilityLevelLabels,
-  conflictLevelLabels,
-} from "./lib/catalog";
+import { conflictLevelLabels } from "./lib/catalog";
 import {
   loadLocalShelfSnapshot,
   saveLocalShelfSnapshot,
@@ -21,7 +18,6 @@ import type {
   PairingReason,
   Product,
   ProductInput,
-  ProductPairCompatibility,
   ProductPairConflict,
   TagMetadata,
 } from "./types";
@@ -85,36 +81,6 @@ const ConflictCard = ({
   );
 };
 
-const CompatibilityCard = ({
-  item,
-  formatTagLabel,
-}: {
-  item: ProductPairCompatibility;
-  formatTagLabel: (tagCode: string) => string;
-}) => {
-  const primaryReason = getPrimaryReason(item.reasons);
-  const reasonLabel = primaryReason
-    ? `${formatTagLabel(primaryReason.tags[0])} + ${formatTagLabel(primaryReason.tags[1])}`
-    : "Ingredient synergy";
-
-  return (
-    <article className="pairing-card pairing-card--compatible">
-      <div className="pairing-card-header">
-        <span className="conflict-icon conflict-icon--compatible">✓</span>
-        <span className="pairing-eyebrow">{compatibilityLevelLabels[item.compatibility_level]}</span>
-      </div>
-      <h3 className="pairing-title">
-        <span className="pairing-product">{item.products[0].name}</span>
-        <span className="pairing-plus" aria-hidden="true">+</span>
-        <span className="pairing-product">{item.products[1].name}</span>
-      </h3>
-      <div className="pairing-reason">
-        <span className="pairing-reason-tags">{reasonLabel}</span>
-        <p className="pairing-reason-note">{getShortReasonText(primaryReason, item.recommendation)}</p>
-      </div>
-    </article>
-  );
-};
 
 const SkinTypeToggle = ({
   isSensitive,
@@ -334,7 +300,7 @@ function App() {
           <header className="hero">
             <h1 className="hero-title">Effortless Precision.</h1>
             <p className="hero-subtitle">
-              Spot which products should not be layered together and which pairings support each other.
+              Detect ingredient conflicts before you layer — so your routine works precisely as intended.
             </p>
           </header>
 
@@ -473,13 +439,7 @@ function App() {
                   <h2 className="module-title">Shelf Analysis</h2>
                   <SkinTypeToggle isSensitive={isSensitiveSkin} onChange={setIsSensitiveSkin} />
                 </div>
-                <p className="module-helper">
-                  {isSensitiveSkin
-                    ? "Showing all conflicts, including caution-level combinations."
-                    : "Showing high-priority conflicts. Switch to Sensitive Skin to see more."}
-                </p>
               </div>
-
               <div className="analysis-action">
                 <button
                   className="analyze-button"
@@ -492,73 +452,52 @@ function App() {
               </div>
             </div>
 
-            <section className="pairings-grid">
-              <section className="pairing-panel pairing-panel--primary">
-                <h2 className="pairing-heading">Do Not Layer Together</h2>
-
-                {displayedConflicts.length > 0 ? (
-                  <>
-                    <div className="pairing-stack">
-                      {displayedConflicts.map((item) => (
-                        <ConflictCard
-                          key={`${item.products.map((p) => p.id).join("-")}-${item.conflict_level}`}
-                          item={item}
-                          formatTagLabel={formatTagLabel}
-                        />
-                      ))}
-                    </div>
-                    {hiddenCautionCount > 0 && (
-                      <p className="hidden-conflicts-notice">
-                        {hiddenCautionCount} caution-level {hiddenCautionCount === 1 ? "conflict" : "conflicts"} hidden.{" "}
-                        <button
-                          type="button"
-                          className="hidden-conflicts-link"
-                          onClick={() => setIsSensitiveSkin(true)}
-                        >
-                          Switch to Sensitive Skin
-                        </button>{" "}
-                        to see them.
-                      </p>
-                    )}
-                  </>
+            <div className="analysis-summary">
+              {pairings ? (
+                displayedConflicts.length > 0 ? (
+                  <span className="analysis-summary-stat analysis-summary-stat--conflicts">
+                    {displayedConflicts.length} conflict{displayedConflicts.length !== 1 ? "s" : ""} detected
+                  </span>
                 ) : (
-                  <>
-                    <p className="empty-state">No conflicts detected for the current shelf.</p>
-                    {hiddenCautionCount > 0 && (
-                      <p className="hidden-conflicts-notice">
-                        {hiddenCautionCount} caution-level {hiddenCautionCount === 1 ? "conflict" : "conflicts"} hidden.{" "}
-                        <button
-                          type="button"
-                          className="hidden-conflicts-link"
-                          onClick={() => setIsSensitiveSkin(true)}
-                        >
-                          Switch to Sensitive Skin
-                        </button>{" "}
-                        to see them.
-                      </p>
-                    )}
-                  </>
-                )}
-              </section>
+                  <span className="analysis-summary-stat analysis-summary-stat--clear">
+                    All clear — no conflicts on your shelf
+                  </span>
+                )
+              ) : (
+                <span className="analysis-summary-stat">
+                  Add products and run an analysis to check ingredient conflicts.
+                </span>
+              )}
+              {hiddenCautionCount > 0 && (
+                <span className="analysis-summary-hidden">
+                  {hiddenCautionCount} caution-level {hiddenCautionCount === 1 ? "conflict" : "conflicts"} hidden —{" "}
+                  <button
+                    type="button"
+                    className="hidden-conflicts-link"
+                    onClick={() => setIsSensitiveSkin(true)}
+                  >
+                    switch to Sensitive Skin
+                  </button>
+                </span>
+              )}
+            </div>
 
-              <section className="pairing-panel">
-                <h2 className="pairing-heading">Works Well Together</h2>
-
-                {pairings && pairings.compatibilities.length > 0 ? (
-                  <div className="pairing-stack">
-                    {pairings.compatibilities.map((item) => (
-                      <CompatibilityCard
-                        key={`${item.products.map((p) => p.id).join("-")}-${item.compatibility_level}`}
-                        item={item}
-                        formatTagLabel={formatTagLabel}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="empty-state">No supportive pairings found for the current shelf.</p>
-                )}
-              </section>
-            </section>
+            {displayedConflicts.length > 0 ? (
+              <div className="conflicts-grid">
+                {displayedConflicts.map((item) => (
+                  <ConflictCard
+                    key={`${item.products.map((p) => p.id).join("-")}-${item.conflict_level}`}
+                    item={item}
+                    formatTagLabel={formatTagLabel}
+                  />
+                ))}
+              </div>
+            ) : pairings ? (
+              <div className="conflicts-empty">
+                <span className="conflicts-empty-icon" aria-hidden="true">✓</span>
+                <p className="conflicts-empty-text">Your current shelf has no conflicting ingredient combinations.</p>
+              </div>
+            ) : null}
           </section>
         </main>
 
