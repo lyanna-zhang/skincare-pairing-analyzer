@@ -25,7 +25,9 @@ A skincare product compatibility checker that lets users add their products and 
 - `public/skincare-background.png` — Background image asset
 
 ## Local Product Database
-123 verified products with real INCI ingredient lists, sourced from Boticinal.com pharmacy:
+167 verified products with real INCI ingredient lists across 24 brands:
+
+**European pharmacy brands** (sourced from Boticinal.com):
 - **CeraVe** (20) — cleansers, moisturizers, serums, SPF
 - **The Ordinary** (24) — acids, serums, retinol, vitamin C
 - **La Roche-Posay** (18) — Effaclar, Toleriane, Anthelios, Cicaplast lines
@@ -38,6 +40,20 @@ A skincare product compatibility checker that lets users add their products and 
 - **Vichy** (5) — Mineral 89, Capital Soleil, Normaderm, LiftActiv
 - **Caudalie** (5) — Vinoperfect, Vinoclean
 - **Filorga** (4) — Time-Filler, Optim-Eyes, Oxygen-Glow
+
+**North American Sephora brands** (sourced from INCIDecoder):
+- **Drunk Elephant** (5) — B-Hydra, Protini, T.L.C. Framboos, C-Firma, A-Passioni
+- **Paula's Choice** (6) — BHA Exfoliant, Retinol, Cleanser, SPF 50, C15 Booster, Omega+
+- **Kiehl's** (6) — Ultra Facial, Midnight Recovery, Avocado Eye, Cleanser, Vitamin C, Clay Mask
+- **Tatcha** (4) — Water Cream, Dewy Skin Cream, Essence, Rice Wash
+- **Sunday Riley** (4) — Good Genes, C.E.O. Serum, Luna Oil, U.F.O. Oil
+- **COSRX** (5) — Snail Mucin Essence, Cleanser, SPF, HA Cream, Propolis Ampoule
+- **LANEIGE** (3) — Lip Sleeping Mask, HA Serum, Cream Skin Toner
+- **Glow Recipe** (1) — Watermelon Niacinamide Dew Drops
+- **Murad** (3) — Retinol Serum, Vita-C Serum, Pigment Lightening Serum
+- **First Aid Beauty** (2) — Ultra Repair Cream, Red Clay Mask
+- **Olehenriksen** (2) — Banana Bright Eye, Truth Serum
+- **Peter Thomas Roth** (3) — Water Drench Cream, Peptide 21 Serum, Retinol Fusion PM
 
 ## Development
 - **Dev server**: `npm run dev` (runs on port 5000, host 0.0.0.0)

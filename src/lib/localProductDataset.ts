@@ -762,6 +762,294 @@ export const LOCAL_PRODUCTS: LocalProduct[] = [
     ingredients_text:
       "AQUA, ALCOHOL DENAT., ETHYLHEXYL TRIAZONE, DROMETRIZOLE TRISILOXANE, ISONONYL ISONONANOATE, HOMOSALATE, NIACINAMIDE, BUTYL METHOXYDIBENZOYLMETHANE, BIS-ETHYLHEXYLOXYPHENOL METHOXYPHENYL TRIAZINE, METHYLPROPANEDIOL, DIISOPROPYL ADIPATE, HYDROXYPHENYL PROPAMIDOBENZOIC ACID, KOJIC ACID, TRANEXAMIC ACID, GLYCERIN, SODIUM HYALURONATE, TOCOPHEROL, CARBOMER, SODIUM HYDROXIDE, DISODIUM EDTA, PHENOXYETHANOL",
   },
+
+  // ─── Drunk Elephant ─────────────────────────────────────────────────────
+  {
+    brand: "Drunk Elephant",
+    product_name: "Drunk Elephant B-Hydra Intensive Hydration Serum",
+    ingredients_text:
+      "Water, Coconut Alkanes, Ammonium Acryloyldimethyltaurate/VP Copolymer, Glycerin, Pentylene Glycol, Sclerocarya Birrea Seed Oil, Wheat Amino Acids, Ananas Sativus (Pineapple) Fruit Extract, Berberis Vulgaris Root Extract, Citrullus Lanatus (Watermelon) Fruit Extract, Lens Esculenta (Lentil) Fruit Extract, Pyrus Malus (Apple) Fruit Extract, Coco-Caprylate/Caprate, Panthenol, Sodium PCA, Sodium Hyaluronate Crosspolymer, Dipotassium Glycyrrhizate, Niacinamide, Cyclodextrin, Sodium Hyaluronate, Sodium Lactate, Phenoxyethanol, Trisodium Ethylenediamine Disuccinate, Citric Acid, Caprylyl Glycol",
+  },
+  {
+    brand: "Drunk Elephant",
+    product_name: "Drunk Elephant Protini Polypeptide Moisturizer",
+    ingredients_text:
+      "Water, Dicaprylyl Carbonate, Glycerin, Cetearyl Alcohol, Cetearyl Olivate, Sorbitan Olivate, Sclerocarya Birrea Seed Oil, Bacillus/Soybean/Folic Acid Ferment Extract, Nymphaea Alba Root Extract, SH-Oligopeptide-1, SH-Oligopeptide-2, SH-Polypeptide-1, SH-Polypeptide-9, SH-Polypeptide-11, Copper Palmitoyl Heptapeptide-14, Heptapeptide-15 Palmitate, Palmitoyl Tetrapeptide-7, Palmitoyl Tripeptide-1, Alanine, Arginine, Glycine, Histidine, Isoleucine, Phenylalanine, Proline, Serine, Threonine, Valine, Acetyl Glutamine, Coconut Alkanes, Coco-Caprylate/Caprate, Sodium Hyaluronate, Butylene Glycol, Sodium Lactate, Sodium PCA, Carbomer, Polysorbate 20, Polysorbate 60, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Xanthan Gum, 1,2-Hexanediol, Caprylyl Glycol, Phenoxyethanol, Tocopherol",
+  },
+  {
+    brand: "Drunk Elephant",
+    product_name: "Drunk Elephant T.L.C. Framboos Glycolic Night Serum",
+    ingredients_text:
+      "Water, Glycolic Acid, Butylene Glycol, Glycerin, Salicylic Acid, Lactic Acid, Citric Acid, Vitis Vinifera (Grape) Juice Extract, Aloe Barbadensis Leaf Juice, Opuntia Ficus-Indica Extract, Aesculus Hippocastanum (Horse Chestnut) Seed Extract, Camellia Sinensis Leaf Extract, Rubus Idaeus (Raspberry) Fruit Extract, Saccharomyces Cerevisiae Extract, Sclerocarya Birrea Seed Oil, Sodium Hyaluronate Crosspolymer, Allantoin, Hydroxyethylcellulose, Galactoarabinan, Propanediol, Disodium EDTA, Xanthan Gum, Phenoxyethanol, Caprylyl Glycol, Ethylhexylglycerin, Sodium Hydroxide, Pentylene Glycol",
+  },
+  {
+    brand: "Drunk Elephant",
+    product_name: "Drunk Elephant C-Firma Fresh Day Serum",
+    ingredients_text:
+      "Water, Dimethyl Isosorbide, Ascorbic Acid, Laureth-23, Glycerin, Lactobacillus/Pumpkin Ferment Extract, Sclerocarya Birrea Seed Oil, Dipotassium Glycyrrhizate, Glycyrrhiza Glabra (Licorice) Root Extract, Vitis Vinifera (Grape) Juice Extract, Phyllanthus Emblica Fruit Extract, Camellia Sinensis Leaf Extract, Tocopherol, Sodium Hyaluronate Crosspolymer, Hydrolyzed Quinoa, Phytosterols, Ferulic Acid, Acetyl Glucosamine, Sodium Hyaluronate, Leuconostoc/Radish Root Ferment Filtrate, Sucrose, Maltodextrin, Chondrus Crispus Extract, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Isohexadecane, Phenoxyethanol, Caprylhydroxamic Acid, Caprylyl Glycol, Sorbitan Isostearate, Propanediol, Pentylene Glycol, Xanthan Gum, Butylene Glycol, Sodium Hydroxide, Chlorphenesin, Polysorbate 60, Ethylhexylglycerin",
+  },
+  {
+    brand: "Drunk Elephant",
+    product_name: "Drunk Elephant A-Passioni Retinol Cream",
+    ingredients_text:
+      "Water, Glycerin, Coco-Caprylate, Stearic Acid, Coconut Alkanes, Glyceryl Stearate, Niacinamide, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Pentylene Glycol, Passiflora Edulis Seed Oil, Retinol, Simmondsia Chinensis (Jojoba) Seed Oil, Sclerocarya Birrea Seed Oil, Prunus Armeniaca (Apricot) Kernel Oil, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Tetrahexyldecyl Ascorbate, Chrysin, Persea Gratissima (Avocado) Oil, Ceramide NP, Phytosphingosine, Phytosterols, Sodium Hyaluronate Crosspolymer, Tocopheryl Acetate, Coco-Caprylate/Caprate, Tocopherol, Phenoxyethanol, Caprylyl Glycol, Carbomer, N-Hydroxysuccinimide, Sodium Hydroxide, Propanediol, Chlorhexidine Digluconate, Polysorbate 20, Trisodium Ethylenediamine Disuccinate, Chlorphenesin, Ethylhexylglycerin",
+  },
+
+  // ─── Paula's Choice ──────────────────────────────────────────────────────
+  {
+    brand: "Paula's Choice",
+    product_name: "Paula's Choice Skin Perfecting 2% BHA Liquid Exfoliant",
+    ingredients_text:
+      "Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Polysorbate 20, Camellia Oleifera (Green Tea) Leaf Extract, Sodium Hydroxide, Tetrasodium EDTA",
+  },
+  {
+    brand: "Paula's Choice",
+    product_name: "Paula's Choice Clinical 1% Retinol Treatment",
+    ingredients_text:
+      "Aqua, Dimethicone, Glycerin, Butylene Glycol, Isononyl Isononanoate, Caprylic/Capric Triglyceride, Glyceryl Stearate, Retinol, Niacinamide, Panthenol, Tocopherol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Paula's Choice",
+    product_name: "Paula's Choice Skin Balancing Oil-Reducing Cleanser",
+    ingredients_text:
+      "Water, Sodium Cocoyl Isethionate, Sodium Lauroamphoacetate, Stearic Acid, Glycerin, Glycol Distearate, Helianthus Annuus (Sunflower) Seed Oil, Acrylates Copolymer, Cetearyl Alcohol, Aloe Barbadensis Leaf Extract, Sodium Chloride, Sodium Hydroxide, Xanthan Gum, Caprylyl Glycol, Hexylene Glycol, Disodium EDTA, Phenoxyethanol",
+  },
+  {
+    brand: "Paula's Choice",
+    product_name: "Paula's Choice Resist Anti-Aging Moisturizer SPF 50",
+    ingredients_text:
+      "Zinc Oxide, Water, Cyclopentasiloxane, PEG-12 Dimethicone, PEG/PPG-18/18 Dimethicone, Lauroyl Lysine, Sodium Chloride, Trihydroxystearin, Dimethicone Crosspolymer, Resveratrol, Quercetin, Tocopheryl Acetate, Tetrahexyldecyl Ascorbate, Adenosine, Bisabolol, Punica Granatum (Pomegranate) Extract, Haematococcus Pluvialis Extract, Hydrolyzed Corn Starch, Polysorbate 80, Hydrated Silica, Triethoxycaprylylsilane, C12-15 Alkyl Benzoate, Caprylyl Glycol, Hexylene Glycol, Ethylhexylglycerin, Phenoxyethanol",
+  },
+  {
+    brand: "Paula's Choice",
+    product_name: "Paula's Choice C15 Super Booster Vitamin C",
+    ingredients_text:
+      "Aqua, Ascorbic Acid, Butylene Glycol, Ethoxydiglycol, Glycerin, PPG-26-Buteth-26, PEG-40 Hydrogenated Castor Oil, Pentylene Glycol, Tocopherol, Sodium Hyaluronate, Ferulic Acid, Panthenol, Bisabolol, Oryza Sativa (Rice) Bran Extract, Propyl Gallate, Sodium Gluconate, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Paula's Choice",
+    product_name: "Paula's Choice Omega+ Complex Moisturizer",
+    ingredients_text:
+      "Water, Butyrospermum Parkii (Shea) Butter, Ceteareth-6 Olivate, Butylene Glycol, C13-15 Alkane, Glycerin, Glyceryl Stearate, Polyglyceryl-4 Laurate, Linum Usitatissimum (Linseed) Seed Oil, Salvia Hispanica (Chia) Seed Oil, Olea Europaea (Olive) Fruit Oil, Passiflora Edulis (Passion Fruit) Seed Oil, Borago Officinalis Seed Oil, Linoleic Acid, Linolenic Acid, Ceramide AP, Ceramide EOP, Ceramide NP, Serine, Alanine, Glycine, Proline, Squalane, Cholesterol, Phytosphingosine, Lecithin, Sodium Hyaluronate, Adenosine, Sodium PCA, Carbomer, Xanthan Gum, Sodium Lauroyl Lactylate, Phenoxyethanol, Ethylhexylglycerin",
+  },
+
+  // ─── Kiehl's ─────────────────────────────────────────────────────────────
+  {
+    brand: "Kiehl's",
+    product_name: "Kiehl's Ultra Facial Cream",
+    ingredients_text:
+      "Aqua, Glycerin, Dimethicone, Squalane, Bis-PEG-18 Methyl Ether Dimethyl Silane, Sucrose Stearate, Stearyl Alcohol, PEG-8 Stearate, Myristyl Myristate, Prunus Armeniaca (Apricot) Kernel Oil, Phenoxyethanol, Persea Gratissima (Avocado) Oil, Glyceryl Stearate, Cetyl Alcohol",
+  },
+  {
+    brand: "Kiehl's",
+    product_name: "Kiehl's Midnight Recovery Concentrate",
+    ingredients_text:
+      "Caprylic/Capric Triglyceride, Dicaprylyl Carbonate, Squalane, Rosa Canina Fruit Oil, Oenothera Biennis (Evening Primrose) Oil, Simmondsia Chinensis (Jojoba) Seed Oil, Coriandrum Sativum (Coriander) Seed Oil, Tocopherol, Lavandula Angustifolia (Lavender) Oil, Pelargonium Graveolens Flower Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil, Cucumis Sativus (Cucumber) Fruit Extract, Curcuma Longa (Turmeric) Root Extract, Helianthus Annuus (Sunflower) Seed Oil",
+  },
+  {
+    brand: "Kiehl's",
+    product_name: "Kiehl's Creamy Eye Treatment with Avocado",
+    ingredients_text:
+      "Water, Butyrospermum Parkii (Shea) Butter, Butylene Glycol, Tridecyl Stearate, Isodecyl Salicylate, PEG-30 Dipolyhydroxystearate, Tridecyl Trimellitate, Persea Gratissima (Avocado) Oil, Isocetyl Stearoyl Stearate, Propylene Glycol, Dipentaerythrityl Hexacaprylate/Hexacaprate, Sorbitan Sesquioleate, Magnesium Sulfate, Phenoxyethanol, Hydrogenated Castor Oil, Sodium PCA",
+  },
+  {
+    brand: "Kiehl's",
+    product_name: "Kiehl's Ultra Facial Cleanser",
+    ingredients_text:
+      "Water, Sodium Laureth Sulfate, Decyl Glucoside, Glycerin, Cocamidopropyl Betaine, Disodium Cocoamphodiacetate, Acrylates Copolymer, Lauryl Glucoside, Sodium Chloride, Pentylene Glycol, Triethanolamine, Phenoxyethanol, PEG-7 Glyceryl Cocoate, Ethylhexylglycerin, Behenyl Alcohol, Citric Acid, Disodium EDTA, Squalane, Prunus Amygdalus Dulcis (Sweet Almond) Oil, Prunus Armeniaca (Apricot) Kernel Oil, Tocopherol, Ascorbyl Glucoside, Persea Gratissima (Avocado) Oil",
+  },
+  {
+    brand: "Kiehl's",
+    product_name: "Kiehl's Powerful-Strength Line-Reducing Concentrate",
+    ingredients_text:
+      "Propylene Glycol, Dimethicone, Glycerin, Ascorbic Acid, Ethylhexyl Palmitate, Cetyl PEG/PPG-10/1 Dimethicone, Dimethicone Crosspolymer, Ascorbyl Glucoside, Cyclohexasiloxane, Hydroxyethylpiperazine Ethane Sulfonic Acid, Lauroyl Lysine, Polysilicone-11, Adenosine, Hydrolyzed Hyaluronic Acid, Citrus Aurantium Dulcis (Orange) Peel Oil, Citrus Limon (Lemon) Peel Oil",
+  },
+  {
+    brand: "Kiehl's",
+    product_name: "Kiehl's Rare Earth Deep Pore Cleansing Masque",
+    ingredients_text:
+      "Water, Kaolin, Bentonite, Propanediol, Glycerin, Titanium Dioxide (CI 77891), Caprylic/Capric Triglyceride, Cetearyl Alcohol, Zea Mays (Corn) Starch, Phenoxyethanol, Ceteareth-20, Caprylyl Glycol, Xanthan Gum, Ethylhexylglycerin, Tocopherol, Lecithin, Aloe Barbadensis Leaf Juice, Avena Sativa (Oat) Kernel Flour, Allantoin",
+  },
+
+  // ─── Tatcha ──────────────────────────────────────────────────────────────
+  {
+    brand: "Tatcha",
+    product_name: "Tatcha The Water Cream",
+    ingredients_text:
+      "Water, Saccharomyces/Camellia Sinensis Leaf/Cladosiphon Okamuranus/Rice Ferment Filtrate, Dimethicone, Propanediol, Glycerin, Diglycerin, Gold, Belamcanda Chinensis Root Extract, Rosa Multiflora Fruit Extract, Houttuynia Cordata Extract, Sophora Angustifolia Root Extract, Sodium Hyaluronate, Lecithin, Sodium Citrate, Mica, Phenoxyethanol, Carbomer, Sodium Hydroxide, Disodium EDTA",
+  },
+  {
+    brand: "Tatcha",
+    product_name: "Tatcha The Dewy Skin Cream",
+    ingredients_text:
+      "Water, Dimethicone, Glycerin, Propanediol, Isononyl Isononanoate, Pentylene Glycol, Butylene Glycol, Cetyl Alcohol, Stearic Acid, Glyceryl Stearate, PEG-100 Stearate, Saccharomyces/Camellia Sinensis Leaf/Cladosiphon Okamuranus/Rice Ferment Filtrate, Belamcanda Chinensis Root Extract, Rosa Multiflora Fruit Extract, Houttuynia Cordata Extract, Sophora Angustifolia Root Extract, Sodium Hyaluronate, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Disodium EDTA",
+  },
+  {
+    brand: "Tatcha",
+    product_name: "Tatcha The Essence Plumping Skin Softener",
+    ingredients_text:
+      "Water, Saccharomyces/Camellia Sinensis Leaf/Cladosiphon Okamuranus/Rice Ferment Filtrate, Butylene Glycol, Glycerin, Dipropylene Glycol, Trehalose, Sodium Hyaluronate, Niacinamide, Panthenol, Allantoin, Hydroxyacetophenone, Sodium PCA, Aloe Barbadensis Leaf Extract, Camellia Sinensis Leaf Extract, Citric Acid, Disodium EDTA, Phenoxyethanol",
+  },
+  {
+    brand: "Tatcha",
+    product_name: "Tatcha The Rice Wash Cleanser",
+    ingredients_text:
+      "Water, Glycerin, Butylene Glycol, Cocamidopropyl Betaine, Oryza Sativa (Rice) Bran Extract, Saccharomyces/Camellia Sinensis Leaf/Cladosiphon Okamuranus/Rice Ferment Filtrate, Sodium Cocoyl Isethionate, Sodium Lauroyl Sarcosinate, Citric Acid, Niacinamide, Panthenol, Allantoin, Sodium Chloride, Sodium Hydroxide, Phenoxyethanol, Disodium EDTA",
+  },
+
+  // ─── Sunday Riley ────────────────────────────────────────────────────────
+  {
+    brand: "Sunday Riley",
+    product_name: "Sunday Riley Good Genes Lactic Acid Treatment",
+    ingredients_text:
+      "Water, Lactic Acid, Glycerin, Propylene Glycol, Hydroxypropyl Starch Phosphate, Sodium Hydroxide, Lentinus Edodes (Shiitake) Extract, Licorice Root Extract, Lemon Peel Extract, Phenoxyethanol, Aloe Vera Gel, Chlorphenesin, Caprylyl Glycol, Disodium EDTA",
+  },
+  {
+    brand: "Sunday Riley",
+    product_name: "Sunday Riley C.E.O. Rapid Flash Brightening Serum",
+    ingredients_text:
+      "Aqua, Ethyl Ascorbic Acid, Propanediol, Glycerin, Niacinamide, Hesperidin Methyl Chalcone, Sodium Hyaluronate, Kojic Acid, Tranexamic Acid, Panthenol, Allantoin, Hydroxyacetophenone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Sunday Riley",
+    product_name: "Sunday Riley Luna Sleeping Night Oil",
+    ingredients_text:
+      "Caprylic/Capric Triglyceride, Helianthus Annuus (Sunflower) Seed Oil, Squalane, Oenothera Biennis (Evening Primrose) Oil, Rosa Canina (Rosehip) Fruit Oil, Hippophae Rhamnoides (Sea Buckthorn) Oil, Retinol, Tanacetum Annuum (Blue Tansy) Flower Oil, Chamomile Extract, Tocopherol, Lavandula Angustifolia (Lavender) Oil",
+  },
+  {
+    brand: "Sunday Riley",
+    product_name: "Sunday Riley U.F.O. Ultra-Clarifying Face Oil",
+    ingredients_text:
+      "Caprylic/Capric Triglyceride, Simmondsia Chinensis (Jojoba) Seed Oil, Cannabis Sativa (Hemp) Seed Oil, Salicylic Acid, Melaleuca Alternifolia (Tea Tree) Leaf Oil, Hexyl Laurate, Capric Acid, Caproic Acid, Lauric Acid, Tocopherol, Zingiber Officinale (Ginger) Root Oil, Litsea Cubeba Fruit Oil",
+  },
+
+  // ─── COSRX ───────────────────────────────────────────────────────────────
+  {
+    brand: "COSRX",
+    product_name: "COSRX Advanced Snail 96 Mucin Power Essence",
+    ingredients_text:
+      "Snail Secretion Filtrate, Betaine, Glycerin, Arginine, Sodium Hyaluronate, Panthenol, Allantoin, Niacinamide, Carbomer, Ethyl Hexanediol, Hydroxyethylcellulose, Sodium Hydroxide, Adenosine, Phenoxyethanol",
+  },
+  {
+    brand: "COSRX",
+    product_name: "COSRX Low pH Good Morning Gel Cleanser",
+    ingredients_text:
+      "Water, Cocamidopropyl Betaine, Sodium Lauroyl Methyl Isethionate, Sodium Methyl Cocoyl Taurate, Glycerin, Butylene Glycol, Salicylic Acid, Niacinamide, Melaleuca Alternifolia (Tea Tree) Leaf Oil, Panthenol, Allantoin, Sodium Hydroxide, Citric Acid, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "COSRX",
+    product_name: "COSRX Aloe Soothing Sun Cream SPF50+",
+    ingredients_text:
+      "Aloe Barbadensis Leaf Water, Zinc Oxide, Titanium Dioxide, Cyclopentasiloxane, Butylene Glycol, Cyclohexasiloxane, Ethylhexyl Methoxycinnamate, Dimethicone, Glycerin, Dimethicone/Vinyl Dimethicone Crosspolymer, PEG-10 Dimethicone, Disteardimonium Hectorite, Polymethylsilsesquioxane, Phenyl Trimethicone, Triethoxycaprylylsilane, Sodium Chloride, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "COSRX",
+    product_name: "COSRX Hyaluronic Acid Intensive Cream",
+    ingredients_text:
+      "Water, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Olivate, Sorbitan Olivate, Butylene Glycol, Sodium Hyaluronate, Panthenol, Allantoin, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "COSRX",
+    product_name: "COSRX Full Fit Propolis Light Ampoule",
+    ingredients_text:
+      "Propolis Extract, Butylene Glycol, Niacinamide, Panthenol, Betaine, 1,2-Hexanediol, Allantoin, Ethyl Hexanediol, Sodium Hyaluronate, Hydroxyethylcellulose, Carbomer, Glycerin, Sodium Hydroxide, Phenoxyethanol",
+  },
+
+  // ─── LANEIGE ─────────────────────────────────────────────────────────────
+  {
+    brand: "LANEIGE",
+    product_name: "LANEIGE Lip Sleeping Mask Berry",
+    ingredients_text:
+      "Polybutylene Glycol/PPG-9/1 Copolymer, Petrolatum, Dipentaerythrityl Hexacaprylate/Hexacaprate, Synthetic Beeswax, Dimethicone, Phytosteryl/Octyldodecyl Lauroyl Glutamate, Hydrogenated Polydecene, Tridecyl Trimellitate, Glycerin, Rubus Idaeus (Raspberry) Fruit Extract, Vaccinium Corymbosum (Blueberry) Fruit Extract, Fragrance (Parfum)",
+  },
+  {
+    brand: "LANEIGE",
+    product_name: "LANEIGE Water Bank Blue Hyaluronic Serum",
+    ingredients_text:
+      "Water, Butylene Glycol, Glycerin, Niacinamide, Beta-Glucan, Pentylene Glycol, Sodium Hyaluronate, Hyaluronic Acid, Hydrolyzed Hyaluronic Acid, Sodium Acetyl Hyaluronate, Hydroxyacetophenone, Carbomer, Triethanolamine, Disodium EDTA, Phenoxyethanol",
+  },
+  {
+    brand: "LANEIGE",
+    product_name: "LANEIGE Cream Skin Refiner Toner",
+    ingredients_text:
+      "Water, Glycerin, Niacinamide, Cetearyl Alcohol, Propanediol, Butylene Glycol, Milk Protein Extract, Beta-Glucan, Sodium Hyaluronate, Ceramide NP, Phospholipids, Cholesterol, Hydroxyacetophenone, Carbomer, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin",
+  },
+
+  // ─── Glow Recipe ─────────────────────────────────────────────────────────
+  {
+    brand: "Glow Recipe",
+    product_name: "Glow Recipe Watermelon Glow Niacinamide Dew Drops",
+    ingredients_text:
+      "Water, Glycerin, Propanediol, Niacinamide, Citrullus Lanatus (Watermelon) Fruit Extract, Sodium Hyaluronate, Hyaluronic Acid, Panthenol, Madecassoside, Centella Asiatica Extract, Allantoin, Carbomer, Sodium Hydroxide, Hydroxyacetophenone, Phenoxyethanol, Ethylhexylglycerin",
+  },
+
+  // ─── Murad ───────────────────────────────────────────────────────────────
+  {
+    brand: "Murad",
+    product_name: "Murad Retinol Youth Renewal Serum",
+    ingredients_text:
+      "Water, Glycerin, Dimethicone, Niacinamide, Retinol, Hydroxypinacolone Retinoate, Retinyl Propionate, Methylpropanediol, Caprylic/Capric Triglyceride, Cetyl Dimethicone, Saccharomyces Cerevisiae Extract, Magnesium Ascorbyl Phosphate, Resveratrol, Palmitoyl Tripeptide-5, Sodium Hyaluronate, Panthenol, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Murad",
+    product_name: "Murad Vita-C Glycolic Brightening Serum",
+    ingredients_text:
+      "Water, Glycolic Acid, Ascorbic Acid, Niacinamide, Ethyl Ascorbic Acid, Propanediol, Glycerin, Hexylresorcinol, Sodium Hyaluronate, Panthenol, Allantoin, Tranexamic Acid, Kojic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Murad",
+    product_name: "Murad Rapid Age Spot and Pigment Lightening Serum",
+    ingredients_text:
+      "Water, Glycerin, Hydroquinone, Glycolic Acid, Propanediol, Hexylresorcinol, Niacinamide, Ascorbic Acid, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+
+  // ─── First Aid Beauty ────────────────────────────────────────────────────
+  {
+    brand: "First Aid Beauty",
+    product_name: "First Aid Beauty Ultra Repair Cream",
+    ingredients_text:
+      "Water, Stearic Acid, Glycerin, C12-15 Alkyl Benzoate, Caprylic/Capric Triglyceride, Dimethicone, Cetyl Alcohol, Glyceryl Stearate, Avena Sativa (Oat) Kernel Extract, Butyrospermum Parkii (Shea) Butter, Allantoin, Boerhavia Diffusa Root Extract, Camellia Sinensis Leaf Extract, Ceramide AP, Ceramide EOP, Ceramide NP, Glyceryl Glucoside, Phytosphingosine, Cholesterol, Phenoxyethanol, Caprylyl Glycol, Xanthan Gum, Disodium EDTA",
+  },
+  {
+    brand: "First Aid Beauty",
+    product_name: "First Aid Beauty Skin Rescue Purifying Mask with Red Clay",
+    ingredients_text:
+      "Water, Kaolin, Bentonite, Glycerin, Propanediol, Illite, Avena Sativa (Oat) Kernel Flour, Salicylic Acid, Niacinamide, Panthenol, Allantoin, Caprylyl Glycol, Xanthan Gum, Sodium Hydroxide, Phenoxyethanol, Disodium EDTA",
+  },
+
+  // ─── Olehenriksen ────────────────────────────────────────────────────────
+  {
+    brand: "Olehenriksen",
+    product_name: "Ole Henriksen Banana Bright Eye Crème",
+    ingredients_text:
+      "Water, Cyclopentasiloxane, Glycerin, Dimethicone, Isononyl Isononanoate, Niacinamide, Cetyl Alcohol, Glyceryl Stearate, PEG-100 Stearate, Caffeine, Ascorbyl Glucoside, Sodium Hyaluronate, Musa Paradisiaca (Banana) Fruit Powder, Tocopherol, Panthenol, Allantoin, Carbomer, Triethanolamine, Phenoxyethanol, Disodium EDTA",
+  },
+  {
+    brand: "Olehenriksen",
+    product_name: "Ole Henriksen Truth Serum Collagen Booster",
+    ingredients_text:
+      "Water, Ascorbic Acid, Glycerin, Propylene Glycol, Hydrolyzed Collagen, Aloe Barbadensis Leaf Juice, Citrus Aurantium Dulcis (Orange) Peel Extract, Citrus Grandis (Grapefruit) Peel Extract, Camellia Sinensis (Green Tea) Leaf Extract, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Caprylyl Glycol",
+  },
+
+  // ─── Peter Thomas Roth ───────────────────────────────────────────────────
+  {
+    brand: "Peter Thomas Roth",
+    product_name: "Peter Thomas Roth Water Drench Hyaluronic Cloud Cream",
+    ingredients_text:
+      "Water, Dimethicone, Glycerin, Niacinamide, Sodium Hyaluronate, Hyaluronic Acid, Hydrolyzed Hyaluronic Acid, Sodium Acetyl Hyaluronate, Pentylene Glycol, Cetyl Alcohol, Glyceryl Stearate, PEG-100 Stearate, Panthenol, Allantoin, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Peter Thomas Roth",
+    product_name: "Peter Thomas Roth Peptide 21 Wrinkle Resist Serum",
+    ingredients_text:
+      "Water, Glycerin, Niacinamide, Propanediol, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Hexapeptide-3, Pentapeptide-18, Acetyl Hexapeptide-8, Sodium Hyaluronate, Hyaluronic Acid, Panthenol, Allantoin, Adenosine, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Peter Thomas Roth",
+    product_name: "Peter Thomas Roth Retinol Fusion PM Night Serum",
+    ingredients_text:
+      "Cyclopentasiloxane, Squalane, Water, Retinol, Tocopheryl Acetate, Ascorbyl Palmitate, Bisabolol, Lecithin, Potassium Phosphate, Pentylene Glycol, Polysorbate 20, Alcohol",
+  },
 ];
 
 const normalize = (text: string) =>
