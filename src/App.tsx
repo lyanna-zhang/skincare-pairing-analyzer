@@ -6,6 +6,8 @@ import {
   fetchProducts,
   fetchTags,
 } from "./lib/shelfService";
+import { ProductNameInput } from "./components/ProductNameInput";
+import type { BeautyProduct } from "./lib/openBeautyFacts";
 import {
   compatibilityLevelLabels,
   conflictLevelLabels,
@@ -135,6 +137,7 @@ function App() {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [name, setName] = useState("");
   const [ingredientsText, setIngredientsText] = useState("");
+  const [autofilled, setAutofilled] = useState(false);
   const [isLoading, setIsLoading] = useState(!localSnapshot);
   const [isSyncingSavedShelf, setIsSyncingSavedShelf] = useState(Boolean(localSnapshot));
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -242,6 +245,7 @@ function App() {
         setPairings(nextPairings);
         setName("");
         setIngredientsText("");
+        setAutofilled(false);
         setShowAllProducts(true);
       });
     } catch (error) {
@@ -274,6 +278,11 @@ function App() {
     } finally {
       setDeletingProductId(null);
     }
+  };
+
+  const handleAutofill = (product: BeautyProduct) => {
+    setIngredientsText(product.ingredients_text);
+    setAutofilled(true);
   };
 
   const formatTagLabel = (tagCode: string) => tagLookup[tagCode]?.name ?? tagCode;
@@ -331,22 +340,30 @@ function App() {
               </p>
 
               <form className="product-form" onSubmit={handleAddProduct}>
-                <label className="field">
+                <div className="field">
                   <span className="field-label">Product Name</span>
-                  <input
-                    className="field-input"
-                    placeholder="e.g. Skin Restoration Cream"
-                    type="text"
+                  <ProductNameInput
                     value={name}
-                    onChange={(event) => setName(event.target.value)}
+                    onChange={(val) => {
+                      setName(val);
+                      if (autofilled) setAutofilled(false);
+                    }}
+                    onAutofill={handleAutofill}
+                    disabled={isSubmitting || isLoading}
                   />
-                </label>
+                </div>
 
                 <label className="field">
                   <span className="field-label">Ingredients</span>
+                  {autofilled && (
+                    <div className="autofill-filled-banner">
+                      <span className="autofill-filled-icon material-symbols-outlined">check_circle</span>
+                      Ingredients autofilled — you can edit them below.
+                    </div>
+                  )}
                   <textarea
                     className="field-input field-textarea"
-                    placeholder="Paste full ingredient list here..."
+                    placeholder="Paste full ingredient list here, or select a product above to autofill..."
                     rows={5}
                     value={ingredientsText}
                     onChange={(event) => setIngredientsText(event.target.value)}
