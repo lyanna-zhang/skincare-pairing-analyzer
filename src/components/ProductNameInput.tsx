@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { searchBeautyProducts, type BeautyProduct } from "../lib/openBeautyFacts";
+import type { BeautyProduct } from "../lib/openBeautyFacts";
+import { searchBeautyProducts } from "../lib/openBeautyFacts";
+import { searchLocalProducts } from "../lib/localProductDataset";
 
 interface Props {
   value: string;
@@ -8,7 +10,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const DEBOUNCE_MS = 380;
+const DEBOUNCE_MS = 350;
 
 export const ProductNameInput = ({ value, onChange, onAutofill, disabled }: Props) => {
   const [suggestions, setSuggestions] = useState<BeautyProduct[]>([]);
@@ -30,6 +32,15 @@ export const ProductNameInput = ({ value, onChange, onAutofill, disabled }: Prop
       return;
     }
 
+    const localResults = searchLocalProducts(value);
+    if (localResults.length > 0) {
+      setSuggestions(localResults);
+      setIsOpen(true);
+      setActiveIndex(-1);
+      setIsSearching(false);
+      return;
+    }
+
     setIsSearching(true);
 
     debounceRef.current = setTimeout(async () => {
@@ -37,9 +48,9 @@ export const ProductNameInput = ({ value, onChange, onAutofill, disabled }: Prop
       abortRef.current = controller;
 
       try {
-        const results = await searchBeautyProducts(value, controller.signal);
-        setSuggestions(results);
-        setIsOpen(results.length > 0);
+        const remoteResults = await searchBeautyProducts(value, controller.signal);
+        setSuggestions(remoteResults);
+        setIsOpen(remoteResults.length > 0);
         setActiveIndex(-1);
       } catch {
       } finally {
@@ -91,7 +102,7 @@ export const ProductNameInput = ({ value, onChange, onAutofill, disabled }: Prop
       <div className="autofill-input-row">
         <input
           className="field-input"
-          placeholder="e.g. Skin Restoration Cream"
+          placeholder="e.g. CeraVe Foaming Cleanser"
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
