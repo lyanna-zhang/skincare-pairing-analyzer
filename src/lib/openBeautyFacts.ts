@@ -7,6 +7,11 @@ interface SearchResponse {
   products: BeautyProduct[];
 }
 
+const isLikelyEnglish = (text: string): boolean => {
+  const nonAscii = text.replace(/[\x00-\x7F]/g, "").length;
+  return nonAscii / text.length < 0.15;
+};
+
 export const searchBeautyProducts = async (
   query: string,
   signal?: AbortSignal,
@@ -18,8 +23,9 @@ export const searchBeautyProducts = async (
   url.searchParams.set("search_simple", "1");
   url.searchParams.set("action", "process");
   url.searchParams.set("json", "1");
-  url.searchParams.set("page_size", "8");
-  url.searchParams.set("fields", "product_name,ingredients_text");
+  url.searchParams.set("page_size", "24");
+  url.searchParams.set("lc", "en");
+  url.searchParams.set("fields", "product_name,ingredients_text,lang");
 
   const response = await fetch(url.toString(), { signal });
   if (!response.ok) {
@@ -28,7 +34,12 @@ export const searchBeautyProducts = async (
 
   const data = (await response.json()) as SearchResponse;
 
-  return (data.products ?? []).filter(
-    (p) => p.product_name?.trim() && p.ingredients_text?.trim(),
-  );
+  return (data.products ?? [])
+    .filter(
+      (p) =>
+        p.product_name?.trim() &&
+        p.ingredients_text?.trim() &&
+        isLikelyEnglish(p.product_name),
+    )
+    .slice(0, 8);
 };
