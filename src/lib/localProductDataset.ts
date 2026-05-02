@@ -470,6 +470,298 @@ export const LOCAL_PRODUCTS: LocalProduct[] = [
     ingredients_text:
       "Aqua, Alcohol Denat, Niacinamide, Lactobionic Acid, Zinc Gluconate, Salicylic Acid, Sodium Hydroxide, Azelaic Acid, Glycerin, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin",
   },
+
+  // ─── Avène ───────────────────────────────────────────────────────────────
+  {
+    brand: "Avène",
+    product_name: "Avène Cicalfate+ Restorative Protective Cream",
+    ingredients_text:
+      "AVENE THERMAL SPRING WATER (AVENE AQUA), CAPRYLIC/CAPRIC TRIGLYCERIDE, MINERAL OIL (PARAFFINUM LIQUIDUM), GLYCERIN, HYDROGENATED VEGETABLE OIL, ZINC OXIDE, PROPYLENE GLYCOL, POLYGLYCERYL-2 SESQUIISOSTEARATE, PEG-22/DODECYL GLYCOL COPOLYMER, ALUMINUM STEARATE, AQUAPHILUS DOLOMIAE FERMENT FILTRATE, ARGININE, BEESWAX (CERA ALBA), COPPER SULFATE, MAGNESIUM STEARATE, MAGNESIUM SULFATE, MICROCRYSTALLINE WAX (CERA MICROCRISTALLINA), TROMETHAMINE, ZINC SULFATE",
+  },
+  {
+    brand: "Avène",
+    product_name: "Avène Cleanance Cleansing Gel",
+    ingredients_text:
+      "AVENE THERMAL SPRING WATER (AVENE AQUA), AQUA, ZINC COCETH SULFATE, LAURYL BETAINE, DECYL GLUCOSIDE, CETEARETH-60 MYRISTYL GLYCOL, PEG-7 GLYCERYL COCOATE, POLYSORBATE 20, CITRIC ACID, FRAGRANCE (PARFUM), ISOPROPYL ALCOHOL, PEG-40 HYDROGENATED CASTOR OIL, PEG-6, PPG-26-BUTETH-26, SILYBUM MARIANUM FRUIT EXTRACT, SODIUM BENZOATE, SODIUM CHLORIDE, SODIUM HYDROXIDE, TRISODIUM ETHYLENEDIAMINE DISUCCINATE, ZINC GLUCONATE",
+  },
+  {
+    brand: "Avène",
+    product_name: "Avène Hydrance Rich Hydrating Cream",
+    ingredients_text:
+      "AVENE THERMAL SPRING WATER (AVENE AQUA), MINERAL OIL (PARAFFINUM LIQUIDUM), GLYCERIN, ISOHEXADECANE, DIMETHICONE, CETEARYL ALCOHOL, CARTHAMUS TINCTORIUS (SAFFLOWER) SEED OIL, ISOCETYL STEAROYL STEARATE, TRIETHYLHEXANOIN, GLYCERYL STEARATE, PEG-100 STEARATE, 1,2-HEXANEDIOL, BUTYROSPERMUM PARKII (SHEA) BUTTER, CETEARYL GLUCOSIDE, BENZOIC ACID, FRAGRANCE (PARFUM), PHYTOSTEROLS, POLYACRYLATE-13, POLYISOBUTENE, POLYSORBATE 20, SODIUM HYDROXIDE, SORBITAN ISOSTEARATE, AQUA, XANTHAN GUM",
+  },
+  {
+    brand: "Avène",
+    product_name: "Avène Cleanance Solar SPF50+",
+    ingredients_text:
+      "Avene Thermal Spring Water (Avene Aqua), C12-15 Alkyl Benzoate, Methylene Bis-Benzatriazolyl Tetramethylbutylphenol, Cetearyl Isononanoate, Aqua, Diisopropyl Adipate, Isodecyl Neopentanoate, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylhexyl Butamido Triazone, Polymethyl Methacrylate, Butyl Methoxydibenzoylmethane, Potassium Cetyl Phosphate, Decyl Glucoside, Glyceryl Laurate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Benzoic Acid, Caprylic/Capric Triglyceride, Caprylyl Glycol, Disodium EDTA, Fragrance (Parfum), Glyceryl Behenate, Silica, Sodium Hydroxide, Tocopheryl Glucoside, Xanthan Gum, Zinc Gluconate",
+  },
+  {
+    brand: "Avène",
+    product_name: "Avène Hydrance Light Hydrating Emulsion",
+    ingredients_text:
+      "AVENE THERMAL SPRING WATER (AVENE AQUA), GLYCERIN, PROPYLENE GLYCOL DICAPRYLATE/DICAPRATE, C14-22 ALCOHOLS, DIMETHICONE, ISOCETYL STEAROYL STEARATE, TRIETHYLHEXANOIN, 1,2-HEXANEDIOL, MICROCRYSTALLINE CELLULOSE, POTASSIUM CETYL PHOSPHATE, ACRYLATES/C10-30 ALKYL ACRYLATE CROSSPOLYMER, BENZOIC ACID, C12-20 ALKYL GLUCOSIDE, FRAGRANCE (PARFUM), HYDROXYETHYL ACRYLATE/SODIUM ACRYLOYLDIMETHYL TAURATE COPOLYMER, PHYTOSTEROLS, POLYSORBATE 60, SCLEROTIUM GUM, SODIUM HYDROXIDE, SORBITAN ISOSTEARATE, SQUALANE, AQUA",
+  },
+  {
+    brand: "Avène",
+    product_name: "Avène XeraCalm AD Lipid-Replenishing Balm",
+    ingredients_text:
+      "AVENE THERMAL SPRING WATER (AVENE AQUA), GLYCERIN, CARTHAMUS TINCTORIUS (SAFFLOWER) SEED OIL, CETEARYL ALCOHOL, HYDROGENATED VEGETABLE OIL, BUTYROSPERMUM PARKII (SHEA) BUTTER, CAPRYLIC/CAPRIC TRIGLYCERIDE, GLYCERYL STEARATE, AQUAPHILUS DOLOMIAE EXTRACT, ARGININE, CETEARYL GLUCOSIDE, CITRIC ACID, HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL, SODIUM DEXTRAN SULFATE, SODIUM STEAROYL GLUTAMATE, TOCOPHEROL, XANTHAN GUM",
+  },
+
+  // ─── Bioderma ────────────────────────────────────────────────────────────
+  {
+    brand: "Bioderma",
+    product_name: "Bioderma Sensibio H2O Micellar Water",
+    ingredients_text:
+      "Aqua, PEG-6 Caprylic/Capric Glycerides, Aloe Barbadensis Leaf Extract, Cucumis Sativus (Cucumber) Fruit Extract, Mannitol, Xylitol, Rhamnose, Fructooligosaccharides, Lecithin, Ginkgo Biloba Leaf Extract, Camellia Sinensis Leaf Extract, Propylene Glycol, Disodium EDTA, Cetrimonium Bromide, Sodium Hydroxide, Citric Acid",
+  },
+  {
+    brand: "Bioderma",
+    product_name: "Bioderma Sebium H2O Micellar Water",
+    ingredients_text:
+      "Aqua, PEG-6 Caprylic/Capric Glycerides, Sodium Citrate, Zinc Gluconate, Copper Sulfate, Ginkgo Biloba Leaf Extract, Mannitol, Xylitol, Rhamnose, Fructooligosaccharides, Propylene Glycol, Citric Acid, Disodium EDTA, Cetrimonium Bromide, Fragrance (Parfum)",
+  },
+  {
+    brand: "Bioderma",
+    product_name: "Bioderma Sensibio DS+ Soothing Cream",
+    ingredients_text:
+      "Aqua, Cocos Nucifera (Coconut) Oil, Propylene Glycol, Caprylic/Capric Triglyceride, Dimethicone, Glycyrrhetinic Acid, Sorbitan Sesquioleate, Piroctone Olamine, Glyceryl Undecylenate, Climbazole, Fructooligosaccharides, Laminaria Ochroleuca Extract, Cetyl Alcohol, Carbomer, Sclerotium Gum, Sodium Hydroxide, Phenoxyethanol",
+  },
+  {
+    brand: "Bioderma",
+    product_name: "Bioderma Sebium Pore Refiner",
+    ingredients_text:
+      "Aqua, Silica, Propylheptyl Caprylate, Glycerin, Propanediol, Ethylhexyl Pelargonate, Polyglyceryl-3 Methylglucose Distearate, Arachidyl Alcohol, Helianthus Annuus (Sunflower) Seed Wax, Caprylic/Capric Triglyceride, Dicaprylyl Carbonate, Sodium Polyacryloyldimethyl Taurate, Behenyl Alcohol, Fragrance (Parfum), Citric Acid, Xanthan Gum, Dextrin Palmitate, Arachidyl Glucoside, Trisodium Ethylenediamine Disuccinate, Salicylic Acid, Diisostearyl Malate, Fomes Officinalis (Mushroom) Extract, Sodium Hydroxide, Mannitol, Xylitol, Rhamnose, Lactobacillus Ferment, Tocopherol",
+  },
+  {
+    brand: "Bioderma",
+    product_name: "Bioderma Sebium Mat Control",
+    ingredients_text:
+      "Aqua, Glycerin, Cyclopentasiloxane, Methyl Methacrylate Crosspolymer, Dipropylene Glycol, Polymethylsilsesquioxane, PEG-10 Dimethicone, Butylene Glycol, Sodium Chloride, Zinc Gluconate, Disodium EDTA, Salicylic Acid, Mannitol, Xylitol, Rhamnose, Xanthan Gum, Sodium Hydroxide, Pyridoxine HCl, Fomes Officinalis (Mushroom) Extract, PEG-40 Hydrogenated Castor Oil, Phenoxyethanol, Fragrance (Parfum)",
+  },
+  {
+    brand: "Bioderma",
+    product_name: "Bioderma Atoderm Intensive Balm",
+    ingredients_text:
+      "Aqua, Glycerin, Paraffinum Liquidum (Mineral Oil), Helianthus Annuus (Sunflower) Seed Oil, Behenyl Alcohol, Canola Oil, Sucrose Stearate, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Pentylene Glycol, Phytosterols, Xylitol, Zinc Gluconate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Palmitamide MEA, 1,2-Hexanediol, Caprylyl Glycol, Sodium Citrate, Mannitol, Rhamnose, Sodium Lauroyl Lactylate, Sodium Hydroxide, Polysorbate 60, Tocopherol, Phytosphingosine, Ceramide NP, Ethylhexylglycerin, Ceramide AP, Cholesterol, Carbomer, Xanthan Gum, Fructooligosaccharides, Caprylic/Capric Triglyceride, Laminaria Ochroleuca Extract, Ceramide EOP",
+  },
+
+  // ─── Eucerin ─────────────────────────────────────────────────────────────
+  {
+    brand: "Eucerin",
+    product_name: "Eucerin Sun Gel-Cream Oil Control SPF50+",
+    ingredients_text:
+      "Aqua, Homosalate, Polymethylsilsesquioxane, Butyl Methoxydibenzoylmethane, Ethylhexyl Salicylate, Octocrylene, Alcohol Denat, Tapioca Starch, Phenylbenzimidazole Sulfonic Acid, Cyclomethicone, Behenyl Alcohol, Cetearyl Alcohol, Methylpropanediol, Silica Dimethyl Silylate, Glycerin, Carnitine, Glycyrrhiza Inflata Root Extract, Sodium Stearoyl Glutamate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Carbomer, Xanthan Gum, Sodium Hydroxide, Sodium Chloride, Trisodium EDTA, Ethylhexylglycerin, Phenoxyethanol",
+  },
+  {
+    brand: "Eucerin",
+    product_name: "Eucerin Sun Pigment Control Fluid SPF50",
+    ingredients_text:
+      "Aqua, C12-15 Alkyl Benzoate, Alcohol Denat., Butyl Methoxydibenzoylmethane, Ethylhexyl Triazone, Butylene Glycol Dicaprylate/Dicaprate, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Dibutyl Adipate, Glyceryl Stearate Citrate, Silica, Phenylbenzimidazole Sulfonic Acid, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Tapioca Starch, Silica Dimethyl Silylate, Cetearyl Alcohol, Behenyl Alcohol, Isobutylamido Thiazolyl Resorcinol (Thiamidol), Glycyrrhiza Inflata Root Extract, Glycyrrhetinic Acid, Tocopheryl Acetate, Glycerin, Xanthan Gum, Carrageenan, Hydroxypropyl Methylcellulose, Sodium Hydroxide, Trisodium EDTA, Hydroxyacetophenone, Phenoxyethanol, Ethylhexylglycerin",
+  },
+  {
+    brand: "Eucerin",
+    product_name: "Eucerin Aquaphor Healing Ointment",
+    ingredients_text:
+      "Paraffinum Liquidum, Ceresin, Lanolin Alcohol, Panthenol, Glycerin, Bisabolol",
+  },
+  {
+    brand: "Eucerin",
+    product_name: "Eucerin Anti-Pigment Serum",
+    ingredients_text:
+      "Aqua, Alcohol Denat., Butylene Glycol, Glycerin, Isopropyl Palmitate, Cetearyl Isononanoate, Diisopropyl Adipate, Propylheptyl Caprylate, Cetearyl Alcohol, Distarch Phosphate, Isobutylamido Thiazolyl Resorcinol, Sodium Ascorbyl Phosphate, Sodium Hyaluronate, Glycyrrhiza Inflata Root Extract, Tocopherol, Glucosylrutin, Sodium Stearoyl Glutamate, Glyceryl Stearate, Hydroxypropyl Starch Phosphate, Xanthan Gum, Gellan Gum, Dimethicone, Isoquercitrin, Citric Acid, Sodium Chloride, Ethylhexylglycerin, Trisodium EDTA, Phenoxyethanol",
+  },
+  {
+    brand: "Eucerin",
+    product_name: "Eucerin DermoPure Triple Action Fluid",
+    ingredients_text:
+      "Aqua, Alcohol Denat., Glycerin, Tapioca Starch, Carbomer, Salicylic Acid, Isobutylamido Thiazolyl Resorcinol, Decylene Glycol, Glycyrrhiza Inflata Root Extract, Panthenol, Glucosylrutin, Isoquercitrin, Ammonium Acryloyldimethyltaurate/VP Copolymer, Pantolactone, Sodium Hydroxide, Trisodium EDTA, Citric Acid",
+  },
+  {
+    brand: "Eucerin",
+    product_name: "Eucerin Anti-Pigment Night Cream",
+    ingredients_text:
+      "Aqua, Glycerin, Alcohol Denat., Butyrospermum Parkii Butter, Cetearyl Isononanoate, Squalane, Isopropyl Palmitate, Panthenol, Glyceryl Stearate Citrate, Cetearyl Alcohol, Hydrogenated Coco-Glycerides, Methylpropanediol, Lauroyl Lysine, Isobutylamido Thiazolyl Resorcinol (Thiamidol), Glycyrrhiza Inflata Root Extract, Tocopherol, Glucosylrutin, Pantolactone, Xanthan Gum, Isoquercitrin, Distarch Phosphate, Citric Acid, Trisodium Ethylenediamine Disuccinate, Phenoxyethanol",
+  },
+
+  // ─── ISDIN ───────────────────────────────────────────────────────────────
+  {
+    brand: "ISDIN",
+    product_name: "ISDIN Isdinceutics K-OX Eyes",
+    ingredients_text:
+      "Aqua, Glycerin, Isohexadecane, Isopropyl Myristate, PPG-15 Stearyl Ether, PEG-30 Dipolyhydroxystearate, Phytonadione Epoxide, Magnesium Sulfate, Phenoxyethanol, Ozokerite, Fragrance (Parfum), Titanium Dioxide (CI 77891), Sodium Dextran Sulfate, Acrylates/C12-22 Alkyl Methacrylate Copolymer, Steareth-20, Hesperidin Methyl Chalcone, Disodium EDTA, Hydrolyzed Hyaluronic Acid, Ethylhexylglycerin, PEG-8, Pentylene Glycol, Tocopherol, N-Hydroxysuccinimide, BHT, Dipeptide-2, Ascorbyl Palmitate, Palmitoyl Tetrapeptide-7, Ascorbic Acid, Citric Acid, Chrysin, Palmitoyl Tripeptide-1",
+  },
+  {
+    brand: "ISDIN",
+    product_name: "ISDIN Isdinceutics Hyaluronic Concentrate",
+    ingredients_text:
+      "Aqua, Dimethicone, Propanediol, Glycerin, 1,2-Hexanediol, Sodium Acrylates Copolymer, Dimethicone Crosspolymer, Butylene Glycol, Pseudoalteromonas Ferment Extract, Glycereth-26, Lecithin, Maltodextrin, Sodium Benzoate, Pentylene Glycol, Lens Esculenta (Lentil) Seed Extract, Fragrance (Parfum), Disodium EDTA, Hydrolyzed Hyaluronic Acid, Sodium Hyaluronate, Xanthan Gum, Citric Acid, Biosaccharide Gum-1, Carbomer, Polysorbate 20, Sodium Lactate, Salicylic Acid, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7",
+  },
+  {
+    brand: "ISDIN",
+    product_name: "ISDIN Isdinceutics Retinal Intense Night Serum",
+    ingredients_text:
+      "Aqua, Dimethicone, Dibutyl Adipate, Niacinamide, Isoamyl Laurate, Lauryl PEG/PPG-18/18 Methicone, Glycerin, Propanediol, Dimethicone/Vinyl Dimethicone Crosspolymer, Alcohol Denat., Bakuchiol, 1,2-Hexanediol, Pentylene Glycol, Caprylic/Capric Triglyceride, Ethylcellulose, Hydroxyacetophenone, Caprylyl Glycol, Fragrance (Parfum), Sodium Acrylates Crosspolymer-2, Polyacrylate Crosspolymer-6, Vigna Aconitifolia Seed Extract, Tocopheryl Acetate, Tocopherol, Citric Acid, Xanthan Gum, Maltodextrin, Melatonin, Retinal (Retinaldehyde), Silica, Disodium EDTA, Phospholipids, Ascorbic Acid, Rosmarinus Officinalis (Rosemary) Leaf Extract, Palmitoyl Tetrapeptide-7, Chrysin",
+  },
+  {
+    brand: "ISDIN",
+    product_name: "ISDIN Isdinceutics Hyaluronic Moisture Cream",
+    ingredients_text:
+      "Aqua, C15-19 Alkane, Propanediol, Glycerin, Caprylic/Capric Triglyceride, Butylene Glycol, Cellulose, Sodium Acrylates Crosspolymer-2, Dimethicone, 1,2-Hexanediol, Panthenol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Caprylyl Glycol, Ammonium Acryloyldimethyltaurate/VP Copolymer, Tocopheryl Acetate, Trehalose, Urea, Fragrance (Parfum), Tocopherol, Vigna Aconitifolia Seed Extract, Citric Acid, Maltodextrin, Sodium Hyaluronate, Tetrasodium Glutamate Diacetate, Hydrolyzed Hyaluronic Acid, Pentylene Glycol, Serine, Camellia Japonica Flower Extract, Alteromonas Ferment Extract",
+  },
+  {
+    brand: "ISDIN",
+    product_name: "ISDIN Glicolisdin 15% Glycolic Gel",
+    ingredients_text:
+      "Aqua, Alcohol Denat., Glycolic Acid, Butylene Glycol, Allantoin, Glycerin, Phenoxyethanol, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Sodium Benzoate",
+  },
+  {
+    brand: "ISDIN",
+    product_name: "ISDIN Glicolisdin 8% Glycolic Cream",
+    ingredients_text:
+      "Aqua, Glycolic Acid, PEG-40 Stearate, Glyceryl Stearate, Caprylic/Capric Triglyceride, Cetyl Alcohol, Stearyl Alcohol, Allantoin, Glycerin, Phenoxyethanol, Carbomer, Sodium Hydroxide, Ethylhexylglycerin",
+  },
+
+  // ─── Vichy ───────────────────────────────────────────────────────────────
+  {
+    brand: "Vichy",
+    product_name: "Vichy Mineral 89 Hyaluronic Acid Serum",
+    ingredients_text:
+      "Aqua, PEG/PPG/Polybutylene Glycol-8/5/3 Glycerin, Glycerin, Butylene Glycol, Methylpropanediol, Niacinamide, Sodium Hyaluronate, Pentylene Glycol, Hydroxyacetophenone, Sodium Citrate, Citric Acid, Phenoxyethanol",
+  },
+  {
+    brand: "Vichy",
+    product_name: "Vichy Capital Soleil SPF50 Dry Touch",
+    ingredients_text:
+      "AQUA, HOMOSALATE, SILICA, ETHYLHEXYL SALICYLATE, ETHYLHEXYL TRIAZONE, C12-15 ALKYL BENZOATE, ALCOHOL DENAT., OCTOCRYLENE, BUTYL METHOXYDIBENZOYLMETHANE, DROMETRIZOLE TRISILOXANE, GLYCERIN, NIACINAMIDE, ISOCETYL STEARATE, DIMETHICONE, DIETHYLAMINO HYDROXYBENZOYL HEXYL BENZOATE, CETEARYL ALCOHOL, SODIUM POLYACRYLATE, PEG-100 STEARATE, GLYCERYL STEARATE, TRIETHANOLAMINE, TOCOPHEROL, CARBOMER, DISODIUM EDTA, XANTHAN GUM",
+  },
+  {
+    brand: "Vichy",
+    product_name: "Vichy Normaderm Anti-Aging Anti-Blemish",
+    ingredients_text:
+      "AQUA, ALCOHOL DENAT., GLYCERIN, DIMETHICONE, PENTAERYTHRITYL TETRAETHYLHEXANOATE, PEG-20 STEARATE, NIACINAMIDE, SALICYLIC ACID, GLYCERYL STEARATE, STEARIC ACID, AMMONIUM POLYACRYLOYLDIMETHYL TAURATE, HYDROXYACETOPHENONE, CAPRYLOYL SALICYLIC ACID, CAFFEINE, RETINOL, TOCOPHEROL, TRISODIUM ETHYLENEDIAMINE DISUCCINATE, SODIUM HYDROXIDE, CARBOMER, DISODIUM EDTA, PHENOXYETHANOL",
+  },
+  {
+    brand: "Vichy",
+    product_name: "Vichy LiftActiv Eyes Supreme",
+    ingredients_text:
+      "Aqua, Dimethicone, Hydrogenated Polyisobutene, Glycerin, Cetyl Alcohol, Glyceryl Stearate, PEG-100 Stearate, Niacinamide, Caffeine, Rhamnose, Sodium Hyaluronate, Adenosine, Panthenol, Bisabolol, Tocopherol, Carbomer, Triethanolamine, Xanthan Gum, Disodium EDTA, Phenoxyethanol",
+  },
+  {
+    brand: "Vichy",
+    product_name: "Vichy Normaderm 3-in-1 Cleansing Gel",
+    ingredients_text:
+      "Aqua, Kaolin, Butylene Glycol, Zea Mays Starch, Glycerin, Decyl Glucoside, Carrageenan, Niacinamide, Salicylic Acid, Zinc Gluconate, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Caprylyl Glycol",
+  },
+
+  // ─── Caudalie ────────────────────────────────────────────────────────────
+  {
+    brand: "Caudalie",
+    product_name: "Caudalie Vinoperfect Radiance Serum",
+    ingredients_text:
+      "AQUA, BUTYLENE GLYCOL, GLYCERIN, COCO-CAPRYLATE/CAPRATE, SQUALANE, PALMITOYL GRAPEVINE SHOOT EXTRACT, VITIS VINIFERA (GRAPE) SEED EXTRACT, NIACINAMIDE, SODIUM HYALURONATE, GLYCOLIC ACID, LACTIC ACID, SALICYLIC ACID, POLYSORBATE 20, CARBOMER, SODIUM HYDROXIDE, XANTHAN GUM, DISODIUM EDTA, PHENOXYETHANOL, ETHYLHEXYLGLYCERIN",
+  },
+  {
+    brand: "Caudalie",
+    product_name: "Caudalie Vinoclean Cleansing Foam",
+    ingredients_text:
+      "Aqua, Glycerin, Sodium Cocoyl Glutamate, Caprylyl/Capryl Glucoside, Cocamidopropyl Betaine, Glyceryl Glucoside, Vitis Vinifera (Grape) Juice, Sodium Benzoate, Citric Acid, Glyceryl Caprylate, Potassium Sorbate, Parfum (Fragrance)",
+  },
+  {
+    brand: "Caudalie",
+    product_name: "Caudalie Vinoclean Hydrating Toning Lotion",
+    ingredients_text:
+      "Aqua, Butylene Glycol, Rosa Damascena Flower Water, Saccharide Isomerate, Methylpropanediol, Vitis Vinifera (Grape) Seed Extract, Glycerin, Niacinamide, Panthenol, Sodium Hyaluronate, Sodium PCA, Allantoin, Citric Acid, Sodium Benzoate, Potassium Sorbate, Parfum (Fragrance)",
+  },
+  {
+    brand: "Caudalie",
+    product_name: "Caudalie Exfoliating Cream Cleanser",
+    ingredients_text:
+      "Aqua, Polyethylene, Hexyldecyl Stearate, Mel (Honey), Glycerin, Vitis Vinifera (Grape) Seed Extract, Cetearyl Alcohol, Coco-Betaine, Glyceryl Stearate, PEG-100 Stearate, Carbomer, Sodium Hydroxide, Phenoxyethanol, Parfum (Fragrance)",
+  },
+  {
+    brand: "Caudalie",
+    product_name: "Caudalie Beauty Elixir",
+    ingredients_text:
+      "Aqua, Alcohol, Citrus Aurantium Amara (Bitter Orange) Flower Water, Fragrance (Parfum), Rosa Damascena Flower Water, Vitis Vinifera (Grape) Seed Extract, Anthemis Nobilis Flower Water, Rosmarinus Officinalis (Rosemary) Leaf Water, Salvia Officinalis (Sage) Leaf Water",
+  },
+
+  // ─── Filorga ─────────────────────────────────────────────────────────────
+  {
+    brand: "Filorga",
+    product_name: "Filorga Time-Filler 5XP Anti-Wrinkle Cream",
+    ingredients_text:
+      "AQUA, GLYCERIN, PROPYLHEPTYL CAPRYLATE, BUTYLENE GLYCOL, CELLULOSE, SQUALANE, NIACINAMIDE, CETYL ALCOHOL, PENTYLENE GLYCOL, PHENOXYETHANOL, CYCLOPENTASILOXANE, CAPRYLIC/CAPRIC TRIGLYCERIDE, DICAPRYLYL CARBONATE, BEHENYL ALCOHOL, HYDROXYACETOPHENONE, SODIUM HYALURONATE, ADENOSINE, ECTOIN, ACETYL HEXAPEPTIDE-8, PALMITOYL TRIPEPTIDE-1, PALMITOYL TETRAPEPTIDE-7, HYDROLYZED COLLAGEN, TOCOPHEROL, XANTHAN GUM, CARBOMER, SODIUM HYDROXIDE, DISODIUM EDTA",
+  },
+  {
+    brand: "Filorga",
+    product_name: "Filorga Optim-Eyes Eye Contour",
+    ingredients_text:
+      "Aqua, Glycerin, Caprylic/Capric Triglyceride, C12-16 Alcohols, Dicaprylyl Carbonate, Cyclopentasiloxane, Butylene Glycol, Niacinamide, Cetearyl Alcohol, Phenoxyethanol, Hydroxyacetophenone, Caffeine, Sodium Hyaluronate, Adenosine, Acetyl Hexapeptide-8, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Hydrolyzed Collagen, Tocopherol, Carbomer, Sodium Hydroxide, Xanthan Gum, Disodium EDTA",
+  },
+  {
+    brand: "Filorga",
+    product_name: "Filorga Oxygen-Glow Radiance Cream",
+    ingredients_text:
+      "AQUA, PROPANEDIOL, HYDROGENATED COCONUT ACID, C15-19 ALKANE, SODIUM HYALURONATE, GLYCERIN, NIACINAMIDE, ADENOSINE, ECTOIN, CAFFEINE, ACETYL HEXAPEPTIDE-8, PALMITOYL TRIPEPTIDE-1, PALMITOYL TETRAPEPTIDE-7, HYDROLYZED COLLAGEN, TOCOPHEROL, CAPRYLIC/CAPRIC TRIGLYCERIDE, CETYL ALCOHOL, PHENOXYETHANOL, HYDROXYACETOPHENONE, CARBOMER, SODIUM HYDROXIDE, XANTHAN GUM, DISODIUM EDTA",
+  },
+  {
+    brand: "Filorga",
+    product_name: "Filorga Sleep & Lift Night Cream",
+    ingredients_text:
+      "Aqua, Cetyl Palmitate, Myristyl Myristate, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Glycerin, Niacinamide, Butylene Glycol, Dimethicone, Hydroxyacetophenone, Sodium Hyaluronate, Adenosine, Acetyl Hexapeptide-8, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Hydrolyzed Collagen, Tocopherol, Phenoxyethanol, Carbomer, Sodium Hydroxide, Xanthan Gum, Disodium EDTA",
+  },
+
+  // ─── SkinCeuticals ───────────────────────────────────────────────────────
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals C E Ferulic Antioxidant Serum",
+    ingredients_text:
+      "Aqua, Dipropylene Glycol, Ascorbic Acid, Glycerin, Leureth-23, Phenoxyethanol, Tocopherol, Triethanolamine, Ferulic Acid, Panthenol, Sodium Hyaluronate, EDTA",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Hydrating B5 Gel",
+    ingredients_text:
+      "Aqua, Glycerin, Phenoxyethanol, Sodium Hyaluronate, Calcium Pantothenate, Sodium Benzoate, Allantoin, Carbomer, Sodium Hydroxide",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Phyto Corrective Soothing Gel",
+    ingredients_text:
+      "Aqua, Glycerin, Propylene Glycol, Phenoxyethanol, Polysorbate 80, Sodium Benzoate, Sodium PCA, Allantoin, Hyaluronic Acid, Dipotassium Glycyrrhizate, Thymol, Sodium Hydroxide, Carbomer, Cucumis Sativus (Cucumber) Fruit Extract, Centella Asiatica Extract, Rumex Occidentalis Extract",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Discoloration Defense Serum",
+    ingredients_text:
+      "Aqua, Butylene Glycol, Niacinamide, Hydroxyethylpiperazine Ethane Sulfonic Acid, Glycerin, Kojic Acid, Tranexamic Acid, Sodium Hyaluronate, Hydroxyphenyl Propamidobenzoic Acid, Phenoxyethanol, Pentylene Glycol, Citric Acid, Sodium Hydroxide",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Blemish + Age Defense Serum",
+    ingredients_text:
+      "Alcohol Denat, Aqua, Methylpropanediol, Glycolic Acid, Diisopropyl Adipate, Octadecenedioic Acid, Dioic Acid, Salicylic Acid, Niacinamide, Butylene Glycol, Sodium Hydroxide, Disodium EDTA",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Triple Lipid Restore 2:4:2",
+    ingredients_text:
+      "Aqua, Dimethicone, Hydrogenated Polyisobutene, Glycerin, Cholesterol, C12-15 Alkyl Benzoate, Glyceryl Stearate, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Palmitic Acid, Phenoxyethanol, Sodium Hyaluronate, Tocopherol, Carbomer, Sodium Hydroxide, Disodium EDTA",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Phloretin CF Antioxidant Serum",
+    ingredients_text:
+      "Aqua, Alcohol Denat., Ascorbic Acid, Phloretin, Ferulic Acid, Glycerin, Tocopherol, Sodium Hyaluronate, Phenoxyethanol, Disodium EDTA",
+  },
+  {
+    brand: "SkinCeuticals",
+    product_name: "SkinCeuticals Advanced Brightening UV Defense SPF50",
+    ingredients_text:
+      "AQUA, ALCOHOL DENAT., ETHYLHEXYL TRIAZONE, DROMETRIZOLE TRISILOXANE, ISONONYL ISONONANOATE, HOMOSALATE, NIACINAMIDE, BUTYL METHOXYDIBENZOYLMETHANE, BIS-ETHYLHEXYLOXYPHENOL METHOXYPHENYL TRIAZINE, METHYLPROPANEDIOL, DIISOPROPYL ADIPATE, HYDROXYPHENYL PROPAMIDOBENZOIC ACID, KOJIC ACID, TRANEXAMIC ACID, GLYCERIN, SODIUM HYALURONATE, TOCOPHEROL, CARBOMER, SODIUM HYDROXIDE, DISODIUM EDTA, PHENOXYETHANOL",
+  },
 ];
 
 const normalize = (text: string) =>
