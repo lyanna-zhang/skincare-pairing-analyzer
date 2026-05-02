@@ -253,7 +253,7 @@ export const pairingData: {
     {
       "tag_code": "vitamin_c",
       "keyword": "ascorbic acid",
-      "match_type": "contains",
+      "match_type": "exact",
       "priority": 10
     },
     {
@@ -679,12 +679,6 @@ export const pairingData: {
     {
       "tag_code": "pha",
       "keyword": "acide lactobionique",
-      "match_type": "contains",
-      "priority": 40
-    },
-    {
-      "tag_code": "retinoid",
-      "keyword": "retinyl palmitate",
       "match_type": "contains",
       "priority": 40
     },
